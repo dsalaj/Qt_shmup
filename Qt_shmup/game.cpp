@@ -35,6 +35,11 @@ void Game::play()
     scene->addItem(health);
 
     rect->setPos(350,500);
+
+//    QMediaPlayer* m = new QMediaPlayer(this);
+//    m->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
+//    qDebug() << "m media status = " << QString::number(m->mediaStatus());
+//    m->play();
 }
 
 void Game::addPoints(int points)

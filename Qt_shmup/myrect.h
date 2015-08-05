@@ -3,6 +3,7 @@
 
 #include <QGraphicsRectItem>
 #include <QObject>
+#include <QMediaPlayer>
 
 class MyRect : public QObject, public QGraphicsRectItem
 {
@@ -10,11 +11,11 @@ class MyRect : public QObject, public QGraphicsRectItem
 public:
     explicit MyRect(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
-
+private:
+    QMediaPlayer* bulletSound;
 signals:
 
 public slots:
-
     void gen();
 };
 
