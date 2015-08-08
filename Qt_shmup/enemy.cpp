@@ -11,7 +11,9 @@ extern Game* game;
 
 Enemy::Enemy(QObject *parent, QGraphicsScene *scene) : QObject(parent), speed(3)
 {
-    setRect((qrand() % static_cast<int>(scene->width() - 70)) + 35, 0, 70, 70);
+    setPixmap(QPixmap(":/images/enemy1.png"));
+    setPos((qrand() % static_cast<int>(scene->width() - 70)) + 35, - pixmap().height());
+
     speed = 2 + (qrand() % 3);
     QTimer* timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));

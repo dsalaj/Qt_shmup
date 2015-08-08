@@ -16,7 +16,7 @@ void Game::play()
     QGraphicsScene* scene = new QGraphicsScene(0,0,800,600);
 
     MyRect* rect = new MyRect();
-    rect->setRect(0,0,100,100);
+    //rect->setRect(0,0,100,100);
     rect->setFlag(QGraphicsItem::ItemIsFocusable);
     rect->setFocus();
 

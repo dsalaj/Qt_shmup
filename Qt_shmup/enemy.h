@@ -2,10 +2,10 @@
 #define ENEMY_H
 
 #include <QObject>
-#include <QGraphicsEllipseItem>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 
-class Enemy : public QObject, public QGraphicsEllipseItem
+class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:

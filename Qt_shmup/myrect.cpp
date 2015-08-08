@@ -10,8 +10,10 @@
 
 MyRect::MyRect(QObject *parent) : QObject(parent)
 {
+    setPixmap(QPixmap(":/images/spaceship.png"));
+
     bulletSound = new QMediaPlayer(this);
-    bulletSound->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
+//    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
 
     QTimer* timer = new QTimer();
     connect(timer,SIGNAL(timeout()),this,SLOT(gen()));
@@ -26,8 +28,9 @@ void MyRect::keyPressEvent(QKeyEvent* event)
     else if(event->key() == Qt::Key_Up) {
         setPos(x(), y()-player_speed);
     }
-    else if(event->key() == Qt::Key_Right &&
-            x() < scene()->width() - this->rect().width()) {
+//    else if(event->key() == Qt::Key_Right &&
+//            x() < scene()->width() - this->rect().width()) {
+    else if(event->key() == Qt::Key_Right) {
         setPos(x()+player_speed, y());
     }
     else if(event->key() == Qt::Key_Left &&
@@ -41,7 +44,8 @@ void MyRect::keyPressEvent(QKeyEvent* event)
 
 
 //        qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
-//        if(bulletSound->state() == QMediaPlayer::PlayingState)
+
+//        if(bulletSound->state() == QMediaPlayer::PlayingState || bulletSound->mediaStatus() == QMediaPlayer::EndOfMedia)
 //        {
 //            bulletSound->setPosition(0);
 //            qDebug() << "bullet->setPosition(0)";
