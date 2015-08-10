@@ -14,21 +14,21 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    myrect.cpp \
     bullet.cpp \
     enemy.cpp \
     game.cpp \
     score.cpp \
-    health.cpp
+    health.cpp \
+    player.cpp
 
 HEADERS  += \
-    myrect.h \
     bullet.h \
     enemy.h \
     constants.h \
     game.h \
     score.h \
-    health.h
+    health.h \
+    player.h
 
 FORMS    += dialog.ui
 

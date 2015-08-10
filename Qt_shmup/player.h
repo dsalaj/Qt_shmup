@@ -5,11 +5,11 @@
 #include <QObject>
 #include <QMediaPlayer>
 
-class MyRect : public QObject, public QGraphicsPixmapItem
+class Player : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit MyRect(QObject *parent = 0);
+    explicit Player(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
 private:
     QMediaPlayer* bulletSound;

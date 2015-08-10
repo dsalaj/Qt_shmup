@@ -3,7 +3,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include "game.h"
-#include "myrect.h"
+#include "player.h"
 
 Game* game;
 

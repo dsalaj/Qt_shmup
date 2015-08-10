@@ -1,4 +1,4 @@
-#include "myrect.h"
+#include "player.h"
 #include "bullet.h"
 #include "enemy.h"
 #include "constants.h"
@@ -7,8 +7,9 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QDebug>
+#include <QPropertyAnimation>
 
-MyRect::MyRect(QObject *parent) : QObject(parent)
+Player::Player(QObject *parent) : QObject(parent)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
 
@@ -20,7 +21,7 @@ MyRect::MyRect(QObject *parent) : QObject(parent)
     timer->start(enemy_spawn_timeout);
 }
 
-void MyRect::keyPressEvent(QKeyEvent* event)
+void Player::keyPressEvent(QKeyEvent* event)
 {
     if(event->key() == Qt::Key_Down) {
         setPos(x(), y()+player_speed);
@@ -28,9 +29,8 @@ void MyRect::keyPressEvent(QKeyEvent* event)
     else if(event->key() == Qt::Key_Up) {
         setPos(x(), y()-player_speed);
     }
-//    else if(event->key() == Qt::Key_Right &&
-//            x() < scene()->width() - this->rect().width()) {
-    else if(event->key() == Qt::Key_Right) {
+    else if(event->key() == Qt::Key_Right &&
+            x() < scene()->width() - this->pixmap().width()) {
         setPos(x()+player_speed, y());
     }
     else if(event->key() == Qt::Key_Left &&
@@ -41,7 +41,6 @@ void MyRect::keyPressEvent(QKeyEvent* event)
         Bullet* bullet = new Bullet(this);
         bullet->setPos(x()+50, y());
         scene()->addItem(bullet);
-
 
 //        qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
 
@@ -58,7 +57,7 @@ void MyRect::keyPressEvent(QKeyEvent* event)
     }
 }
 
-void MyRect::gen() {
+void Player::gen() {
     Enemy* enemy = new Enemy(this, scene());
     scene()->addItem(enemy);
 }

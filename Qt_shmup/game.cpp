@@ -1,5 +1,5 @@
 #include "game.h"
-#include "myrect.h"
+#include "player.h"
 #include "score.h"
 #include "health.h"
 
@@ -15,12 +15,12 @@ void Game::play()
 {
     QGraphicsScene* scene = new QGraphicsScene(0,0,800,600);
 
-    MyRect* rect = new MyRect();
+    Player* player = new Player();
     //rect->setRect(0,0,100,100);
-    rect->setFlag(QGraphicsItem::ItemIsFocusable);
-    rect->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
-    scene->addItem(rect);
+    scene->addItem(player);
 
     QGraphicsView* view = new QGraphicsView(scene);
     view->show();
@@ -34,12 +34,7 @@ void Game::play()
     health = new Health(scene, 6);
     scene->addItem(health);
 
-    rect->setPos(350,500);
-
-//    QMediaPlayer* m = new QMediaPlayer(this);
-//    m->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
-//    qDebug() << "m media status = " << QString::number(m->mediaStatus());
-//    m->play();
+    player->setPos(350,500);
 }
 
 void Game::addPoints(int points)
