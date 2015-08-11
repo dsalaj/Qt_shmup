@@ -9,10 +9,11 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health);
+    explicit Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health, unsigned int score);
 protected:
     unsigned int speed;
     unsigned int health;
+    unsigned int score;
 
 signals:
 

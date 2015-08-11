@@ -9,9 +9,9 @@
 
 extern Game* game;
 
-Enemy::Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health) : QObject(parent), speed(speed), health(health)
+Enemy::Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health, unsigned int score) :
+             QObject(parent), speed(speed), health(health), score(score)
 {
-    setPos((qrand() % static_cast<int>(scene->width() - 70)) + 35, - pixmap().height());
 
 }
 
@@ -29,7 +29,7 @@ void Enemy::move()
                 health--;
                 if(health <= 0)
                 {
-                    game->addPoints(1);
+                    game->addPoints(score);
                     delete this;
                 }
             }
