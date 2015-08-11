@@ -29,7 +29,7 @@ void Enemy::move()
                 health--;
                 if(health <= 0)
                 {
-                    game->addPoints(score);
+                    Game::getInstance().addPoints(score);
                     delete this;
                 }
             }
@@ -37,7 +37,7 @@ void Enemy::move()
     }
     else if(y() > scene()->height())
     {
-        game->decHealth(-1);
+        Game::getInstance().decHealth(-1);
         delete this;
     }
 }

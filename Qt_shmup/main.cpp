@@ -5,14 +5,11 @@
 #include "game.h"
 #include "player.h"
 
-Game* game;
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    game = new Game();
-    game->play();
+    Game::getInstance().play();
 
     return a.exec();
 }

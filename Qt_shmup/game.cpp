@@ -5,15 +5,25 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QImage>
+#include <QTimer>
 
 Game::Game()
 {
 
 }
 
+Game &Game::getInstance()
+{
+    static Game instance;
+    return instance;
+}
+
 void Game::play()
 {
-    QGraphicsScene* scene = new QGraphicsScene(0,0,800,600);
+    scene = new QGraphicsScene(0,0,800,600);
+
+    bg_pos = 0;
 
     Player* player = new Player();
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -33,7 +43,11 @@ void Game::play()
     health = new Health(scene, 6);
     scene->addItem(health);
 
-    player->setPos(350,500);
+    player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
+
+    QTimer* timer = new QTimer();
+    connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
+    timer->start(50);
 }
 
 void Game::addPoints(int points)
@@ -52,4 +66,13 @@ int Game::random_xpos(int sw, int pw)
     std::random_device generator;
     std::uniform_int_distribution<int> distribution(0,sw - pw);
     return distribution(generator);
+}
+
+void Game::moveBackground()
+{
+    // FIXXME: moving background wihtout tearing
+    background = new QPixmap(":/images/bg.png");
+    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
+    if(bg_pos % background->height() == 0) bg_pos = 0;
+    scene->setBackgroundBrush(QBrush(*background));
 }
