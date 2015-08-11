@@ -2,6 +2,8 @@
 #include "bullet.h"
 #include "enemy.h"
 #include "constants.h"
+#include "enemy_01.h"
+#include "enemy_02.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -58,8 +60,16 @@ void Player::keyPressEvent(QKeyEvent* event)
 }
 
 void Player::gen() {
-    Enemy* enemy = new Enemy(this, scene());
-    scene()->addItem(enemy);
+    if(qrand() % 2 == 0)
+    {
+        Enemy_01* enemy = new Enemy_01(this, scene());
+        scene()->addItem(enemy);
+    }
+    else
+    {
+        Enemy_02* enemy = new Enemy_02(this, scene());
+        scene()->addItem(enemy);
+    }
 }
 
 

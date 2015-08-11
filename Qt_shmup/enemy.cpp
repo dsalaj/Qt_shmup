@@ -9,15 +9,10 @@
 
 extern Game* game;
 
-Enemy::Enemy(QObject *parent, QGraphicsScene *scene) : QObject(parent), speed(3)
+Enemy::Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health) : QObject(parent), speed(speed), health(health)
 {
-    setPixmap(QPixmap(":/images/enemy1.png"));
     setPos((qrand() % static_cast<int>(scene->width() - 70)) + 35, - pixmap().height());
 
-    speed = 2 + (qrand() % 3);
-    QTimer* timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(50);
 }
 
 void Enemy::move()
@@ -31,8 +26,12 @@ void Enemy::move()
             {
                 Bullet* b = dynamic_cast<Bullet*>(i);
                 if(b!=NULL) b->remove();
-                game->addPoints(1);
-                delete this;
+                health--;
+                if(health <= 0)
+                {
+                    game->addPoints(1);
+                    delete this;
+                }
             }
         }
     }

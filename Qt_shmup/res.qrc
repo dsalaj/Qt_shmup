@@ -7,5 +7,6 @@
         <file>spaceship.png</file>
         <file>bullet.png</file>
         <file>enemy1.png</file>
+        <file>enemy2.png</file>
     </qresource>
 </RCC>

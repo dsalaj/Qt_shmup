@@ -9,14 +9,15 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Enemy(QObject *parent, QGraphicsScene *scene);
-private:
+    explicit Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health);
+protected:
     unsigned int speed;
+    unsigned int health;
 
 signals:
 
 public slots:
-    void move();
+    virtual void move();
 };
 
 #endif // ENEMY_H

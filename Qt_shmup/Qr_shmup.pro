@@ -19,7 +19,9 @@ SOURCES += main.cpp \
     game.cpp \
     score.cpp \
     health.cpp \
-    player.cpp
+    player.cpp \
+    enemy_01.cpp \
+    enemy_02.cpp
 
 HEADERS  += \
     bullet.h \
@@ -28,7 +30,9 @@ HEADERS  += \
     game.h \
     score.h \
     health.h \
-    player.h
+    player.h \
+    enemy_01.h \
+    enemy_02.h
 
 FORMS    += dialog.ui
 
