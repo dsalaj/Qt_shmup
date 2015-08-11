@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
+#include "game.h"
+
+extern Game* game;
 
 class Enemy : public QObject, public QGraphicsPixmapItem
 {

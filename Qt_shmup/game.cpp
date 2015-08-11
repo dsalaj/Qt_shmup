@@ -46,3 +46,10 @@ void Game::decHealth(int points)
     health->decHealth(points);
 }
 
+
+int Game::random_xpos(int sw, int pw)
+{
+    std::random_device generator;
+    std::uniform_int_distribution<int> distribution(0,sw - pw);
+    return distribution(generator);
+}
