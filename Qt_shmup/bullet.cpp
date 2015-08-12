@@ -6,7 +6,7 @@ Bullet::Bullet(QObject *parent) : QObject(parent)
 {
     //setRect(x(), y(), 4, 10);
     setPixmap(QPixmap(":/images/bullet.png"));
-    QTimer* timer = new QTimer();
+    QTimer* timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(10);
 }

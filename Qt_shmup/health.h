@@ -3,10 +3,10 @@
 
 #include <QGraphicsTextItem>
 
-class Health : public QGraphicsTextItem, public QObject
+class Health : public QGraphicsTextItem
 {
 public:
-    explicit Health(QObject *parent, unsigned int h);
+    explicit Health(unsigned int h);
     void decHealth(int points);
 private:
     unsigned int health;

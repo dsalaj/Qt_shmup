@@ -22,8 +22,9 @@ Game &Game::getInstance()
 void Game::play()
 {
     scene = new QGraphicsScene(0,0,800,600);
-
     bg_pos = 0;
+    background = new QPixmap(":/images/bg.png");
+    scene->setBackgroundBrush(QBrush(*background));
 
     Player* player = new Player();
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -33,19 +34,19 @@ void Game::play()
 
     QGraphicsView* view = new QGraphicsView(scene);
     view->show();
-    view->setFixedSize(800,600);
+    view->setFixedSize(scene->width(),scene->height());
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    score = new Score(scene, 0);
+    score = new Score(this, 0);
     scene->addItem(score);
 
-    health = new Health(scene, 6);
+    health = new Health(6);
     scene->addItem(health);
 
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-    QTimer* timer = new QTimer();
+    QTimer* timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
     timer->start(50);
 }
@@ -71,8 +72,8 @@ int Game::random_xpos(int sw, int pw)
 void Game::moveBackground()
 {
     // FIXXME: moving background wihtout tearing
-    background = new QPixmap(":/images/bg.png");
-    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
-    if(bg_pos % background->height() == 0) bg_pos = 0;
-    scene->setBackgroundBrush(QBrush(*background));
+//    background = new QPixmap(":/images/bg.png");
+//    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
+//    if(bg_pos % background->height() == 0) bg_pos = 0;
+//    scene->setBackgroundBrush(QBrush(*background));
 }

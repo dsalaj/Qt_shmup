@@ -25,7 +25,10 @@ void Enemy::move()
             if(typeid(*i) == typeid(Bullet))
             {
                 Bullet* b = dynamic_cast<Bullet*>(i);
-                if(b!=NULL) b->remove();
+                if(b!=NULL)
+                {
+                    b->remove();
+                }
                 health--;
                 if(health <= 0)
                 {

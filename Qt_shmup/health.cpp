@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-Health::Health(QObject *parent, unsigned int h) : QObject(parent), health(h)
+Health::Health(unsigned int h) : health(h)
 {
     setPlainText("Health: " + QString::number(health));
     setPos(x(), 15);
