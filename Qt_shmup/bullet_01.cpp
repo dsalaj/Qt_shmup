@@ -1,8 +1,6 @@
 #include "bullet_01.h"
-#include "bullet.h"
 
-
-Bullet_01::Bullet_01(QObject *parent) : Bullet(parent, 1)
+Bullet_01::Bullet_01(QObject *parent) : Bullet_player(parent, 1)
 {
     setPixmap(QPixmap(":/images/bullet_01.png"));
 }

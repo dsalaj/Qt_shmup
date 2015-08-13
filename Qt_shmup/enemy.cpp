@@ -1,3 +1,4 @@
+#include "bullet_player.h"
 #include "enemy.h"
 
 #include <QTimer>
@@ -22,9 +23,9 @@ void Enemy::move()
     {
         for(QGraphicsItem* i : collidingItems())
         {
-            if(dynamic_cast<Bullet*>(i))
+            if(dynamic_cast<Bullet_player*>(i))
             {
-                Bullet* b = dynamic_cast<Bullet*>(i);
+                Bullet_player* b = dynamic_cast<Bullet_player*>(i);
                 if(b!=NULL)
                 {
                     b->remove();
@@ -43,5 +44,9 @@ void Enemy::move()
         Game::getInstance().decHealth(-1);
         delete this;
     }
+}
+
+void Enemy::shoot()
+{
 }
 

@@ -22,6 +22,7 @@ signals:
 
 public slots:
     virtual void move();
+    virtual void shoot();
 };
 
 #endif // ENEMY_H

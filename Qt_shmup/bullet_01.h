@@ -1,12 +1,12 @@
 #ifndef BULLET_01_H
 #define BULLET_01_H
 
-#include "bullet.h"
+#include "bullet_player.h"
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
 
-class Bullet_01 : public Bullet
+class Bullet_01 : public Bullet_player
 {
     Q_OBJECT
 public:

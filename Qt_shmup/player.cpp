@@ -11,7 +11,6 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QDebug>
-#include <QPropertyAnimation>
 
 Player::Player(QObject *parent) : QObject(parent)
 {

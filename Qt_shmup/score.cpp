@@ -5,6 +5,7 @@
 Score::Score(unsigned int s) : score(s)
 {
     setPlainText("Score: " + QString::number(score));
+    setDefaultTextColor(QColor(255,255,255));
     show();
 }
 
