@@ -38,7 +38,7 @@ void Game::play()
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    score = new Score(this, 0);
+    score = new Score(0);
     scene->addItem(score);
 
     health = new Health(6);

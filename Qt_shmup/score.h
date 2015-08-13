@@ -3,10 +3,10 @@
 
 #include <QGraphicsTextItem>
 
-class Score : public QGraphicsTextItem, public QObject
+class Score : public QGraphicsTextItem
 {
 public:
-    explicit Score(QObject *parent, unsigned int s);
+    explicit Score(unsigned int s);
     void addPoints(int points);
 private:
     unsigned int score;

@@ -9,7 +9,7 @@
 
 extern Game* game;
 
-Enemy::Enemy(QObject *parent, QGraphicsScene *scene, unsigned int speed, unsigned int health, unsigned int score) :
+Enemy::Enemy(QObject *parent, unsigned int speed, unsigned int health, unsigned int score) :
              QObject(parent), speed(speed), health(health), score(score)
 {
 

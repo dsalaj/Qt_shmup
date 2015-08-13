@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-Score::Score(QObject *parent, unsigned int s) : QObject(parent), score(s)
+Score::Score(unsigned int s) : score(s)
 {
     setPlainText("Score: " + QString::number(score));
     show();
