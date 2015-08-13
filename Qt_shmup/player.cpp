@@ -4,6 +4,8 @@
 #include "constants.h"
 #include "enemy_01.h"
 #include "enemy_02.h"
+#include "bullet_01.h"
+#include "bullet_02.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -40,12 +42,11 @@ void Player::keyPressEvent(QKeyEvent* event)
         setPos(x()-player_speed, y());
     }
     else if(event->key() == Qt::Key_Space) {
-        Bullet* bullet = new Bullet(this);
-        bullet->setPos(x()+50, y());
+        Bullet_02* bullet = new Bullet_02(this);
+        bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
         scene()->addItem(bullet);
 
 //        qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
-
 //        if(bulletSound->state() == QMediaPlayer::PlayingState || bulletSound->mediaStatus() == QMediaPlayer::EndOfMedia)
 //        {
 //            bulletSound->setPosition(0);

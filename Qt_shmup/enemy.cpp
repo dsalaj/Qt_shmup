@@ -9,7 +9,7 @@
 
 extern Game* game;
 
-Enemy::Enemy(QObject *parent, unsigned int speed, unsigned int health, unsigned int score) :
+Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score) :
              QObject(parent), speed(speed), health(health), score(score)
 {
 
@@ -22,14 +22,14 @@ void Enemy::move()
     {
         for(QGraphicsItem* i : collidingItems())
         {
-            if(typeid(*i) == typeid(Bullet))
+            if(dynamic_cast<Bullet*>(i))
             {
                 Bullet* b = dynamic_cast<Bullet*>(i);
                 if(b!=NULL)
                 {
                     b->remove();
                 }
-                health--;
+                health -= b->damage();
                 if(health <= 0)
                 {
                     Game::getInstance().addPoints(score);

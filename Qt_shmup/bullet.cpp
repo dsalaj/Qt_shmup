@@ -2,18 +2,16 @@
 
 #include <QTimer>
 
-Bullet::Bullet(QObject *parent) : QObject(parent)
+Bullet::Bullet(QObject *parent, unsigned int damage) : QObject(parent), dmg(damage)
 {
-    //setRect(x(), y(), 4, 10);
-    setPixmap(QPixmap(":/images/bullet.png"));
     QTimer* timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(10);
 }
 
-void Bullet::move()
+unsigned int Bullet::damage()
 {
-    setPos(x(), y()-4);
+    return dmg;
 }
 
 void Bullet::remove()

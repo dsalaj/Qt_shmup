@@ -8,11 +8,12 @@ class Bullet : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Bullet(QObject *parent = 0);
+    explicit Bullet(QObject *parent, unsigned int damage);
+    unsigned int damage();
 private:
-    //QTimer* timer;
+    unsigned int dmg;
 public slots:
-    void move();
+    virtual void move() = 0;
     void remove();
 };
 
