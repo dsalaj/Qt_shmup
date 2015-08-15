@@ -6,6 +6,7 @@
 #include "enemy_02.h"
 #include "bullet_01.h"
 #include "bullet_02.h"
+#include "enemy_b01.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -19,9 +20,9 @@ Player::Player(QObject *parent) : QObject(parent)
     bulletSound = new QMediaPlayer(this);
 //    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
 
-    QTimer* timer = new QTimer();
-    connect(timer,SIGNAL(timeout()),this,SLOT(gen()));
-    timer->start(enemy_spawn_timeout);
+//    QTimer* timer = new QTimer();
+//    connect(timer,SIGNAL(timeout()),this,SLOT(gen()));
+//    timer->start(enemy_spawn_timeout);
 }
 
 void Player::keyPressEvent(QKeyEvent* event)
@@ -57,19 +58,24 @@ void Player::keyPressEvent(QKeyEvent* event)
 //            qDebug() << "bullet->play()";
 //        }
     }
+    else if(event->key() == Qt::Key_B) {
+        gen();
+    }
 }
 
 void Player::gen() {
-    if(qrand() % 2 == 0)
-    {
-        Enemy_01* enemy = new Enemy_01(this, scene());
-        scene()->addItem(enemy);
-    }
-    else
-    {
-        Enemy_02* enemy = new Enemy_02(this, scene());
-        scene()->addItem(enemy);
-    }
+    Enemy_b01* enemy = new Enemy_b01(this, scene());
+    scene()->addItem(enemy);
+//    if(qrand() % 2 == 0)
+//    {
+//        Enemy_01* enemy = new Enemy_01(this, scene());
+//        scene()->addItem(enemy);
+//    }
+//    else
+//    {
+//        Enemy_02* enemy = new Enemy_02(this, scene());
+//        scene()->addItem(enemy);
+//    }
 }
 
 

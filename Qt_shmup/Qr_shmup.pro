@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     bullet_02.cpp \
     bullet_player.cpp \
     bullet_enemy.cpp \
-    bullet_e01.cpp
+    bullet_e01.cpp \
+    enemy_b01.cpp
 
 HEADERS  += \
     bullet.h \
@@ -42,7 +43,8 @@ HEADERS  += \
     bullet_02.h \
     bullet_player.h \
     bullet_enemy.h \
-    bullet_e01.h
+    bullet_e01.h \
+    enemy_b01.h
 
 FORMS    += dialog.ui
 
