@@ -5,9 +5,9 @@
 #include <QTimer>
 #include <QDebug>
 
-Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, 7, 4, 5), state(0), y_state(1)
+Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, 2, 20, 20), state(0), y_state(1)
 {
-    setPixmap(QPixmap(":/images/enemy2.png"));
+    setPixmap(QPixmap(":/images/boss1.png"));
     setPos(scene->width()/2 - pixmap().width()/2, - pixmap().height());
 
     QTimer* move_timer = new QTimer(this);
