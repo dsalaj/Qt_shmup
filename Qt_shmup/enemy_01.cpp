@@ -11,3 +11,9 @@ Enemy_01::Enemy_01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, (2 + 
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
 }
+
+void Enemy_01::move()
+{
+    setPos(x(), y()+speed);
+    check();
+}

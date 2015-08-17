@@ -3,13 +3,12 @@
 
 #include "enemy.h"
 
-
-
 class Enemy_02 : public Enemy
 {
 public:
     explicit Enemy_02(QObject *parent, QGraphicsScene *scene);
 public slots:
+    void move();
     void shoot();
 };
 

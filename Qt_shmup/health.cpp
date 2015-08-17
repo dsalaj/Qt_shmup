@@ -12,9 +12,9 @@ Health::Health(unsigned int h) : health(h)
 
 void Health::decHealth(int points)
 {
-    if(static_cast<int>(health) + points >= 0)
+    if(static_cast<int>(health) - points >= 0)
     {
-        health += points;
+        health -= points;
         setPlainText("Health: " + QString::number(health));
     }
     else

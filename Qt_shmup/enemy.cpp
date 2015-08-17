@@ -18,7 +18,11 @@ Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score
 
 void Enemy::move()
 {
-    setPos(x(), y()+speed);
+
+}
+
+void Enemy::check()
+{
     if(collidingItems().size() != 0)
     {
         for(QGraphicsItem* i : collidingItems())
@@ -41,7 +45,7 @@ void Enemy::move()
     }
     else if(y() > scene()->height())
     {
-        Game::getInstance().decHealth(-1);
+        Game::getInstance().decHealth(1);
         delete this;
     }
 }

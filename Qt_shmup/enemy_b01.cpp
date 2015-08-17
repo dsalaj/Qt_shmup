@@ -45,32 +45,7 @@ void Enemy_b01::move()
         if(x() <= scene()->width()/2-pixmap().width()/2) state = 0;
     }
 
-    //FIXME: make enemy movement generic in parent
-    if(collidingItems().size() != 0)
-    {
-        for(QGraphicsItem* i : collidingItems())
-        {
-            if(dynamic_cast<Bullet_player*>(i))
-            {
-                Bullet_player* b = dynamic_cast<Bullet_player*>(i);
-                if(b!=NULL)
-                {
-                    b->remove();
-                }
-                health -= b->damage();
-                if(health <= 0)
-                {
-                    Game::getInstance().addPoints(score);
-                    delete this;
-                }
-            }
-        }
-    }
-    else if(y() > scene()->height())
-    {
-        Game::getInstance().decHealth(-1);
-        delete this;
-    }
+    check();
 }
 
 void Enemy_b01::shoot()

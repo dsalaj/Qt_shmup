@@ -1,4 +1,6 @@
 #include "bullet_e01.h"
+#include "player.h"
+#include "game.h"
 
 Bullet_e01::Bullet_e01(QObject *parent) : Bullet_enemy(parent, 1)
 {
@@ -8,4 +10,16 @@ Bullet_e01::Bullet_e01(QObject *parent) : Bullet_enemy(parent, 1)
 void Bullet_e01::move()
 {
     setPos(x(), y()+2);
+    if(collidingItems().size() != 0)
+    {
+        for(QGraphicsItem* i : collidingItems())
+        {
+            Player* p = dynamic_cast<Player*>(i);
+            if(p!=NULL)
+            {
+                Game::getInstance().decHealth(this->damage());
+                this->remove();
+            }
+        }
+    }
 }

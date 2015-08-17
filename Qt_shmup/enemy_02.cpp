@@ -17,6 +17,12 @@ Enemy_02::Enemy_02(QObject *parent, QGraphicsScene *scene) : Enemy(parent, (1 + 
     shoot_timer->start(2000);
 }
 
+void Enemy_02::move()
+{
+    setPos(x(), y()+speed);
+    check();
+}
+
 void Enemy_02::shoot()
 {
     Bullet_e01* bullet = new Bullet_e01(scene());
