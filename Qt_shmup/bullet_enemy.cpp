@@ -9,3 +9,8 @@ Bullet_enemy::~Bullet_enemy()
 {
 
 }
+
+void Bullet_enemy::move()
+{
+
+}

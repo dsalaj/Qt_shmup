@@ -31,7 +31,7 @@ void Game::play()
     background = new QPixmap(":/images/bg.png");
     scene->setBackgroundBrush(QBrush(*background));
 
-    Player* player = new Player();
+    player = new Player(this);
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 

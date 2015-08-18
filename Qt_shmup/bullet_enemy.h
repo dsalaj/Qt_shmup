@@ -8,6 +8,8 @@ class Bullet_enemy : public Bullet
 public:
     explicit Bullet_enemy(QObject *parent, unsigned int damage);
     virtual ~Bullet_enemy();
+public slots:
+    virtual void move();
 };
 
 #endif // BULLET_ENEMY_H

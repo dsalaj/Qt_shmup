@@ -2,11 +2,10 @@
 #define GAME_H
 
 #include "health.h"
+#include "player.h"
 #include "score.h"
 
 #include <QObject>
-
-
 
 class Game : public QObject
 {
@@ -23,6 +22,7 @@ private:
     Game(Game const&) = delete;
     void operator=(Game const&) = delete;
 
+    Player* player;
     Score* score;
     Health* health;
     QGraphicsScene* scene;

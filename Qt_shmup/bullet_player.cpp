@@ -9,3 +9,8 @@ Bullet_player::~Bullet_player()
 {
 
 }
+
+void Bullet_player::move()
+{
+
+}

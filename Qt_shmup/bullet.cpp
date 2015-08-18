@@ -4,7 +4,7 @@
 
 Bullet::Bullet(QObject *parent, unsigned int damage) : QObject(parent), dmg(damage)
 {
-    QTimer* timer = new QTimer(this);
+    timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
     timer->start(10);
 }
