@@ -28,8 +28,10 @@ private:
     QGraphicsScene* scene;
     QPixmap* background;
     unsigned int bg_pos;
+    QTimer* enemy_spawn;
 public slots:
     void moveBackground();
+    void gen();
 };
 
 #endif // GAME_H

@@ -4,3 +4,8 @@ Bullet_enemy::Bullet_enemy(QObject *parent, unsigned int damage) : Bullet(parent
 {
 
 }
+
+Bullet_enemy::~Bullet_enemy()
+{
+
+}

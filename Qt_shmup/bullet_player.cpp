@@ -4,3 +4,8 @@ Bullet_player::Bullet_player(QObject *parent, unsigned int damage) : Bullet(pare
 {
 
 }
+
+Bullet_player::~Bullet_player()
+{
+
+}

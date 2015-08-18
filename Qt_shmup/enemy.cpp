@@ -1,3 +1,5 @@
+#include "bullet.h"
+#include "game.h"
 #include "bullet_player.h"
 #include "enemy.h"
 
@@ -5,13 +7,17 @@
 #include <QGraphicsScene>
 #include <QDebug>
 #include <typeinfo>
-#include "bullet.h"
-#include "game.h"
+
 
 extern Game* game;
 
 Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score) :
              QObject(parent), speed(speed), health(health), score(score)
+{
+
+}
+
+Enemy::~Enemy()
 {
 
 }
@@ -32,9 +38,9 @@ void Enemy::check()
                 Bullet_player* b = dynamic_cast<Bullet_player*>(i);
                 if(b!=NULL)
                 {
+                    health -= b->damage();
                     b->remove();
                 }
-                health -= b->damage();
                 if(health <= 0)
                 {
                     Game::getInstance().addPoints(score);
@@ -43,10 +49,13 @@ void Enemy::check()
             }
         }
     }
-    else if(y() > scene()->height())
+    else
     {
-        Game::getInstance().decHealth(1);
-        delete this;
+        if(y() > scene()->height())
+        {
+            Game::getInstance().decHealth(1);
+            delete this;
+        }
     }
 }
 

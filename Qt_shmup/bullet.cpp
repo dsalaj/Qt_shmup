@@ -9,6 +9,11 @@ Bullet::Bullet(QObject *parent, unsigned int damage) : QObject(parent), dmg(dama
     timer->start(10);
 }
 
+Bullet::~Bullet()
+{
+
+}
+
 unsigned int Bullet::damage()
 {
     return dmg;

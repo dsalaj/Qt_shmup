@@ -13,10 +13,6 @@ public:
     void keyPressEvent(QKeyEvent *event);
 private:
     QMediaPlayer* bulletSound;
-signals:
-
-public slots:
-    void gen();
 };
 
 #endif // MYRECT_H
