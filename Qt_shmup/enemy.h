@@ -19,7 +19,6 @@ protected:
     int health;
     unsigned int score;
 public slots:
-    virtual void move();
     virtual void check();
     virtual void shoot();
 };

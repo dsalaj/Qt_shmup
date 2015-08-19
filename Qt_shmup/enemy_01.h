@@ -7,8 +7,8 @@ class Enemy_01 : public Enemy
 {
 public:
     explicit Enemy_01(QObject *parent, QGraphicsScene *scene);
-public slots:
-    void move();
+protected:
+    void advance(int phase);
 };
 
 #endif // ENEMY_01_H

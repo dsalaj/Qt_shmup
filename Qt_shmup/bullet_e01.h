@@ -11,8 +11,8 @@ class Bullet_e01 : public Bullet_enemy
     Q_OBJECT
 public:
     explicit Bullet_e01(QObject *parent);
-public slots:
-    void move();
+protected:
+    void advance(int phase);
 };
 
 #endif // BULLET_E01_H

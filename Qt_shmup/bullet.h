@@ -15,7 +15,6 @@ private:
     unsigned int dmg;
     QTimer* timer;
 public slots:
-    virtual void move() = 0;
     void remove();
 };
 
