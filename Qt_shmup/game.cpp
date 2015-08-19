@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "enemy_01.h"
 #include "enemy_02.h"
+#include "enemy_b01.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -92,8 +93,8 @@ void Game::moveBackground()
 }
 
 void Game::gen() {
-//    Enemy_b01* enemy = new Enemy_b01(this, scene());
-//    scene()->addItem(enemy);
+//    Enemy_b01* enemy = new Enemy_b01(this, scene);
+//    scene->addItem(enemy);
     if(qrand() % 2 == 0)
     {
         Enemy_01* enemy = new Enemy_01(this, scene);

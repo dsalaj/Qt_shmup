@@ -7,12 +7,9 @@
 
 Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, speed_eb01, health_eb01, score_eb01), state(0), y_state(1)
 {
-    setPixmap(QPixmap(":/images/boss1.png"));
+    pix = QPixmap(":/images/boss1.png");
+    setPixmap(pix);
     setPos(scene->width()/2 - pixmap().width()/2, - pixmap().height());
-
-    QTimer* move_timer = new QTimer(this);
-    connect(move_timer,SIGNAL(timeout()),this,SLOT(move()));
-    move_timer->start(50);
 
     QTimer* shoot_timer = new QTimer(this);
     connect(shoot_timer,SIGNAL(timeout()),this,SLOT(shoot()));

@@ -6,7 +6,7 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QDebug>
-#include <typeinfo>
+#include <QBitmap>
 
 
 extern Game* game;
@@ -24,6 +24,7 @@ Enemy::~Enemy()
 
 void Enemy::check()
 {
+    setPixmap(pix);
     if(collidingItems().size() != 0)
     {
         for(QGraphicsItem* i : collidingItems())
@@ -35,6 +36,10 @@ void Enemy::check()
                 {
                     health -= b->damage();
                     b->remove();
+                    QPixmap p = pixmap();
+                    p.fill(Qt::white);
+                    p.setMask(pix.mask());
+                    this->setPixmap(p);
                 }
                 if(health <= 0)
                 {

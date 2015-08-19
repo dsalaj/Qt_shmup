@@ -5,7 +5,8 @@
 
 Enemy_02::Enemy_02(QObject *parent, QGraphicsScene *scene) : Enemy(parent, (speed_e02 + (qrand() % 2)), health_e02, score_e02)
 {
-    setPixmap(QPixmap(":/images/enemy2.png"));
+    pix = QPixmap(":/images/enemy2.png");
+    setPixmap(pix);
     setPos(Game::getInstance().random_xpos(static_cast<int>(scene->width()), pixmap().width()), - pixmap().height());
 
     QTimer* shoot_timer = new QTimer(this);

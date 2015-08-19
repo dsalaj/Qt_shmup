@@ -20,6 +20,7 @@ protected:
     int health;
     unsigned int score;
     virtual void check();
+    QPixmap pix;
 public slots:
     virtual void shoot();
 };
