@@ -8,7 +8,6 @@
 
 class Bullet_02 : public Bullet_player
 {
-    Q_OBJECT
 public:
     explicit Bullet_02(QObject *parent);
 protected:

@@ -6,16 +6,14 @@
 
 class Bullet : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
     explicit Bullet(QObject *parent, unsigned int damage);
     virtual ~Bullet();
     unsigned int damage();
+    void remove();
 private:
     unsigned int dmg;
     QTimer* timer;
-public slots:
-    void remove();
 };
 
 #endif // BULLET_H
