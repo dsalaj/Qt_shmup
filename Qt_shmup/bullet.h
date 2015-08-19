@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 
+#include "constants.h"
+
 class Bullet : public QObject, public QGraphicsPixmapItem
 {
 public:

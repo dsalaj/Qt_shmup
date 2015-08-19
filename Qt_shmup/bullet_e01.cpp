@@ -10,7 +10,7 @@ Bullet_e01::Bullet_e01(QObject *parent) : Bullet_enemy(parent, 1)
 void Bullet_e01::advance(int phase)
 {
     if(!phase) return;
-    setPos(x(), y()+2);
+    setPos(x(), y()+bullet_speed_e01);
     if(collidingItems().size() != 0)
     {
         for(QGraphicsItem* i : collidingItems())

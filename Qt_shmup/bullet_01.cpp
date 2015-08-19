@@ -8,5 +8,5 @@ Bullet_01::Bullet_01(QObject *parent) : Bullet_player(parent, 1)
 void Bullet_01::advance(int phase)
 {
     if(!phase) return;
-    setPos(x(), y()-4);
+    setPos(x(), y()-bullet_speed_01);
 }

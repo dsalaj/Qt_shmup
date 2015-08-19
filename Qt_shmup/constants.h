@@ -18,5 +18,8 @@ const unsigned int score_e01 = 1;
 const unsigned int score_e02 = 2;
 const unsigned int score_eb01 = 20;
 
+const unsigned int bullet_speed_01 = 10;
+const unsigned int bullet_speed_02 = 4;
+const unsigned int bullet_speed_e01 = 6;
 #endif // CONSTANTS
 
