@@ -51,9 +51,9 @@ void Game::play()
 
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-    QTimer* timer = new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
-    timer->start(50);
+//    QTimer* timer = new QTimer(this);
+//    connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
+//    timer->start(50);
 }
 
 void Game::addPoints(int points)
