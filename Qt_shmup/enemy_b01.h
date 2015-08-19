@@ -11,8 +11,9 @@ private:
     unsigned int state;
     unsigned int y_state;
 public slots:
-    virtual void move();
     virtual void shoot();
+protected:
+    void advance(int phase);
 };
 
 #endif // ENEMY_B01_H

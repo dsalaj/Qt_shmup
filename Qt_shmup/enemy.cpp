@@ -22,11 +22,6 @@ Enemy::~Enemy()
 
 }
 
-void Enemy::move()
-{
-
-}
-
 void Enemy::check()
 {
     if(collidingItems().size() != 0)

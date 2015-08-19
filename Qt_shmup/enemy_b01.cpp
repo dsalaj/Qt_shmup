@@ -19,8 +19,16 @@ Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, spe
     shoot_timer->start(2000);
 }
 
-void Enemy_b01::move()
+void Enemy_b01::shoot()
 {
+    Bullet_e01* bullet = new Bullet_e01(scene());
+    bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y()+pixmap().height());
+    scene()->addItem(bullet);
+}
+
+void Enemy_b01::advance(int phase)
+{
+    if(!phase) return;
     if(state == 0)
     {
         setPos(x(), y()+speed);
@@ -46,11 +54,4 @@ void Enemy_b01::move()
     }
 
     check();
-}
-
-void Enemy_b01::shoot()
-{
-    Bullet_e01* bullet = new Bullet_e01(scene());
-    bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y()+pixmap().height());
-    scene()->addItem(bullet);
 }

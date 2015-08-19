@@ -19,9 +19,8 @@ protected:
     unsigned int speed;
     int health;
     unsigned int score;
-public slots:
-    virtual void move();
     virtual void check();
+public slots:
     virtual void shoot();
 };
 

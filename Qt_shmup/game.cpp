@@ -30,6 +30,8 @@ void Game::play()
     bg_pos = 0;
     background = new QPixmap(":/images/bg.png");
     scene->setBackgroundBrush(QBrush(*background));
+    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex); // TODO: compare the two index methods
+    //scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
     player = new Player(this);
     player->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -42,6 +44,8 @@ void Game::play()
     view->setFixedSize(scene->width(),scene->height());
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setRenderHint(QPainter::Antialiasing); // TODO: see if it makes difference
+    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate); // TODO: test the performance with different policies
 
     score = new Score(0);
     scene->addItem(score);
@@ -54,6 +58,10 @@ void Game::play()
 //    QTimer* timer = new QTimer(this);
 //    connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
 //    timer->start(50);
+
+    QTimer* timer = new QTimer(scene);
+    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    timer->start(1000 / 33);
 }
 
 void Game::addPoints(int points)
