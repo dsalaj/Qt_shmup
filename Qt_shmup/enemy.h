@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include "game.h"
+#include "constants.h"
 
 extern Game* game;
 

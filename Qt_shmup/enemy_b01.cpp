@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QDebug>
 
-Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, 2, 20, 20), state(0), y_state(1)
+Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, speed_eb01, health_eb01, score_eb01), state(0), y_state(1)
 {
     setPixmap(QPixmap(":/images/boss1.png"));
     setPos(scene->width()/2 - pixmap().width()/2, - pixmap().height());
