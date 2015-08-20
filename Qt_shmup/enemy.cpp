@@ -12,7 +12,7 @@
 extern Game* game;
 
 Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score) :
-             QObject(parent), speed(speed), health(health), score(score)
+             QObject(parent), speed(speed), health(health), score(score), boss_body(false)
 {
 
 }
@@ -20,6 +20,21 @@ Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score
 Enemy::~Enemy()
 {
 
+}
+bool Enemy::getBoss_body() const
+{
+    return boss_body;
+}
+
+void Enemy::setBoss_body(bool value)
+{
+    boss_body = value;
+}
+
+
+void Enemy::damage(unsigned int amount)
+{
+    if(!boss_body) health -= amount;
 }
 
 void Enemy::check()
@@ -34,7 +49,7 @@ void Enemy::check()
                 Bullet_player* b = dynamic_cast<Bullet_player*>(i);
                 if(b!=NULL)
                 {
-                    health -= b->damage();
+                    damage(b->damage());
                     b->remove();
                     QPixmap p = pixmap();
                     p.fill(Qt::white);

@@ -6,6 +6,7 @@
 #include "enemy_01.h"
 #include "enemy_02.h"
 #include "enemy_b01.h"
+#include "enemy_boss01.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -17,6 +18,7 @@ Game::Game()
     enemy_spawn = new QTimer();
     connect(enemy_spawn,SIGNAL(timeout()),this,SLOT(gen()));
     enemy_spawn->start(enemy_spawn_timeout);
+    enemy_spawn->setSingleShot(true);
 }
 
 Game &Game::getInstance()
@@ -93,16 +95,16 @@ void Game::moveBackground()
 }
 
 void Game::gen() {
-//    Enemy_b01* enemy = new Enemy_b01(this, scene);
-//    scene->addItem(enemy);
-    if(qrand() % 2 == 0)
-    {
-        Enemy_01* enemy = new Enemy_01(this, scene);
-        scene->addItem(enemy);
-    }
-    else
-    {
-        Enemy_02* enemy = new Enemy_02(this, scene);
-        scene->addItem(enemy);
-    }
+    Enemy_boss01* enemy = new Enemy_boss01(this, scene);
+    scene->addItem(enemy);
+//    if(qrand() % 2 == 0)
+//    {
+//        Enemy_01* enemy = new Enemy_01(this, scene);
+//        scene->addItem(enemy);
+//    }
+//    else
+//    {
+//        Enemy_02* enemy = new Enemy_02(this, scene);
+//        scene->addItem(enemy);
+//    }
 }

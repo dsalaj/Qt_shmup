@@ -1,15 +1,17 @@
 #include "bullet_e01.h"
-#include "bullet_player.h"
 #include "enemy_b01.h"
+#include "enemy_boss01.h"
 
 #include <QTimer>
 #include <QDebug>
 
-Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, speed_eb01, health_eb01, score_eb01), state(0), y_state(1)
+Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene)
+         : Enemy(parent, speed_eb01, health_eb01, score_eb01), state(0), y_state(1)
 {
+    setBoss_body(true);
     pix = QPixmap(":/images/boss1.png");
     setPixmap(pix);
-    setPos(scene->width()/2 - pixmap().width()/2, - pixmap().height());
+    setPos(mapToScene(scene->width()/2 - pixmap().width()/2, - pixmap().height()));
 
     QTimer* shoot_timer = new QTimer(this);
     connect(shoot_timer,SIGNAL(timeout()),this,SLOT(shoot()));
@@ -19,36 +21,13 @@ Enemy_b01::Enemy_b01(QObject *parent, QGraphicsScene *scene) : Enemy(parent, spe
 void Enemy_b01::shoot()
 {
     Bullet_e01* bullet = new Bullet_e01(scene());
-    bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y()+pixmap().height());
+    bullet->setPos(mapToScene(x()+pixmap().width()/2-bullet->pixmap().width()/2, y()+pixmap().height()));
     scene()->addItem(bullet);
 }
 
 void Enemy_b01::advance(int phase)
 {
     if(!phase) return;
-    if(state == 0)
-    {
-        setPos(x(), y()+speed);
-        if(y() >= 50*y_state) {
-            state = 1;
-            y_state++;
-        }
-    }
-    else if(state == 1 && x() > 0)
-    {
-        setPos(x()-speed, y());
-        if(x() <= 0) state = 2;
-    }
-    else if(state == 2 && x() < scene()->width()-pixmap().width())
-    {
-        setPos(x()+speed, y());
-        if(x() >= scene()->width()-pixmap().width()) state = 3;
-    }
-    else if(state == 3 && x() > scene()->width()/2-pixmap().width()/2)
-    {
-        setPos(x()-speed, y());
-        if(x() <= scene()->width()/2-pixmap().width()/2) state = 0;
-    }
-
+    if(dynamic_cast<Enemy_boss01*>(parent())->childItems().size() == 1) setBoss_body(false);
     check();
 }

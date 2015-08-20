@@ -15,7 +15,12 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 public:
     explicit Enemy(QObject *parent, unsigned int speed, int health, unsigned int score);
     virtual ~Enemy();
+    bool getBoss_body() const;
+    void setBoss_body(bool value);
+
 protected:
+    bool boss_body;
+    void damage(unsigned int amount);
     unsigned int speed;
     int health;
     unsigned int score;
