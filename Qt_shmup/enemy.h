@@ -19,11 +19,11 @@ public:
     void setBoss_body(bool value);
 
 protected:
-    bool boss_body;
     void damage(unsigned int amount);
     unsigned int speed;
     int health;
     unsigned int score;
+    bool boss_body;
     virtual void check();
     QPixmap pix;
 public slots:

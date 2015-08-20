@@ -29,6 +29,7 @@ private:
     QPixmap* background;
     unsigned int bg_pos;
     QTimer* enemy_spawn;
+    QString level;
 public slots:
     void moveBackground();
     void gen();

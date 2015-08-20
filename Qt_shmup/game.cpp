@@ -15,10 +15,6 @@
 
 Game::Game()
 {
-    enemy_spawn = new QTimer();
-    connect(enemy_spawn,SIGNAL(timeout()),this,SLOT(gen()));
-    enemy_spawn->start(enemy_spawn_timeout);
-    enemy_spawn->setSingleShot(true);
 }
 
 Game &Game::getInstance()
@@ -65,6 +61,11 @@ void Game::play()
     QTimer* timer = new QTimer(scene);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
     timer->start(1000 / 33);
+
+    level = "..:..:.:..:.::.._b";
+    enemy_spawn = new QTimer();
+    connect(enemy_spawn,SIGNAL(timeout()),this,SLOT(gen()));
+    enemy_spawn->start(enemy_spawn_timeout);
 }
 
 void Game::addPoints(int points)
@@ -95,16 +96,29 @@ void Game::moveBackground()
 }
 
 void Game::gen() {
-    Enemy_boss01* enemy = new Enemy_boss01(this, scene);
-    scene->addItem(enemy);
-//    if(qrand() % 2 == 0)
-//    {
-//        Enemy_01* enemy = new Enemy_01(this, scene);
-//        scene->addItem(enemy);
-//    }
-//    else
-//    {
-//        Enemy_02* enemy = new Enemy_02(this, scene);
-//        scene->addItem(enemy);
-//    }
+
+    if(!level.isEmpty())
+    {
+        QChar instruction = level.at(0);
+        level.remove(0,1);
+        if(instruction == '.')
+        {
+            Enemy_01* enemy = new Enemy_01(this, scene);
+            scene->addItem(enemy);
+        }
+        else if(instruction == ':')
+        {
+            Enemy_02* enemy = new Enemy_02(this, scene);
+            scene->addItem(enemy);
+        }
+        else if(instruction == '_')
+        {
+            // rest
+        }
+        else if(instruction == 'b')
+        {
+            Enemy_boss01* enemy = new Enemy_boss01(this, scene);
+            scene->addItem(enemy);
+        }
+    }
 }
