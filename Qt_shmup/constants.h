@@ -3,7 +3,7 @@
 
 #include <random>
 
-const int player_speed = 12;
+const int player_speed = 2;
 const int enemy_spawn_timeout = 2000;
 
 const unsigned int speed_e01 = 2;

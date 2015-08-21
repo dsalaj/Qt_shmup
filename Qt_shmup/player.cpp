@@ -12,8 +12,9 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QDebug>
+#include <QGraphicsSceneMouseEvent>
 
-Player::Player(QObject *parent) : QObject(parent)
+Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
 
@@ -54,7 +55,52 @@ void Player::keyPressEvent(QKeyEvent* event)
 //            qDebug() << "bullet->play()";
 //        }
     }
-    else if(event->key() == Qt::Key_B) {
+    else if(event->key() == Qt::Key_G) {
         Game::getInstance().gen();
     }
+}
+
+void Player::advance(int phase)
+{
+    if(!phase) return;
+    setDirection();
+    if(direction > 0)
+    {
+        setPos(x()+player_speed, y());
+    }
+    else if(direction < 0)
+    {
+        setPos(x()-player_speed, y());
+    }
+}
+
+void Player::setDirection()
+{
+    center = this->x() + pixmap().width()/2;
+    if(mouse_x < center-1)
+    {
+        direction = -1;
+    }
+    else if(mouse_x > center+1)
+    {
+        direction = 1;
+    }
+    else
+    {
+        direction = 0;
+    }
+}
+
+void Player::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+}
+
+void Player::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    mouse_x = event->scenePos().x();
+    mouse_y = event->scenePos().y();
+
+    setDirection();
+
+    //qDebug() << "Player: mouse moved! dir = " << QString::number(direction);
 }
