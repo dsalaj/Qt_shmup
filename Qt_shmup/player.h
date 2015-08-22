@@ -1,13 +1,13 @@
-#ifndef MYRECT_H
-#define MYRECT_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QMediaPlayer>
+#include <QKeyEvent>
 
 class Player : public QObject, public QGraphicsPixmapItem
 {
-    Q_OBJECT
 public:
     explicit Player(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);    
@@ -19,9 +19,7 @@ private:
     qreal center;
     qreal mouse_x, mouse_y;
     void setDirection();
-public slots:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    bool shoot;
 };
 
-#endif // MYRECT_H
+#endif // PLAYER_H

@@ -14,7 +14,7 @@
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 
-Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0)
+Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
 
@@ -69,19 +69,17 @@ bool Player::eventFilter(QObject *obj, QEvent *event)
         {
             mouse_x = e->pos().x();
             mouse_y = e->pos().y();
-
             setDirection();
         }
     }
     else if(event->type() == QEvent::MouseButtonPress)
     {
-//        QMouseEvent* e = static_cast<QMouseEvent*>(event);
-//        if(e->button() == Qt::LeftButton)
-//        {
-//            Bullet_01* bullet = new Bullet_01(this);
-//            bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
-//            scene()->addItem(bullet);
-//        }
+        QMouseEvent* e = static_cast<QMouseEvent*>(event);
+        if(e->button() == Qt::LeftButton)
+        {
+            shoot = true; // TODO: ASK FABIAN: crashes when Bullet directly constructed
+        }
+
     } else {
         // pass the event on to the parent class
         //return QMainWindow::eventFilter(obj, event);
@@ -103,16 +101,23 @@ void Player::advance(int phase)
     {
         setPos(x()-player_speed, y());
     }
+    if(shoot == true)
+    {
+        shoot = false;
+        Bullet_01* bullet = new Bullet_01(this);
+        bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
+        scene()->addItem(bullet);
+    }
 }
 
 void Player::setDirection()
 {
     center = this->x() + pixmap().width()/2;
-    if(mouse_x < center-1)
+    if(mouse_x < center-player_pos_tolerance)
     {
         direction = -1;
     }
-    else if(mouse_x > center+1)
+    else if(mouse_x > center+player_pos_tolerance)
     {
         direction = 1;
     }
@@ -122,14 +127,3 @@ void Player::setDirection()
     }
 }
 
-void Player::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-}
-
-void Player::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-//    mouse_x = event->scenePos().x();
-//    mouse_y = event->scenePos().y();
-
-//    setDirection();
-}
