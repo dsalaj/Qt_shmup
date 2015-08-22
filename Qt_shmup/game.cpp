@@ -13,9 +13,20 @@
 #include <QImage>
 #include <QTimer>
 
-Game::Game()
+Game::Game() : background(NULL)
 {
 }
+
+void Game::move_bg()
+{
+    // FIXXME: moving background wihtout tearing
+    background = new QPixmap(":/images/bg.png");
+    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
+    //if(bg_pos % background->height() == 0) bg_pos = 0;
+    //scene->setBackgroundBrush(QBrush(Qt::black));
+    scene->setBackgroundBrush(QBrush(*background));
+}
+
 Player *Game::getPlayer() const
 {
     return player;
@@ -59,12 +70,9 @@ void Game::play()
 
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-//    QTimer* timer = new QTimer(this);
-//    connect(timer,SIGNAL(timeout()),this,SLOT(moveBackground()));
-//    timer->start(50);
-
     QTimer* timer = new QTimer(scene);
     connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
+    connect(timer, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
     timer->start(1000 / 33);
 
     level = "..:..:.:..:.::.._b";
@@ -89,15 +97,6 @@ int Game::random_xpos(int sw, int pw)
     std::random_device generator;
     std::uniform_int_distribution<int> distribution(0,sw - pw);
     return distribution(generator);
-}
-
-void Game::moveBackground()
-{
-    // FIXXME: moving background wihtout tearing
-//    background = new QPixmap(":/images/bg.png");
-//    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
-//    if(bg_pos % background->height() == 0) bg_pos = 0;
-//    scene->setBackgroundBrush(QBrush(*background));
 }
 
 void Game::gen() {
