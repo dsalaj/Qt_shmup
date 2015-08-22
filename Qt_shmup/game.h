@@ -16,6 +16,8 @@ public:
     void addPoints(int points);
     void decHealth(int points);
     int random_xpos(int sw, int pw);
+    Player *getPlayer() const;
+
 private:
     static Game* instance;
     Game();

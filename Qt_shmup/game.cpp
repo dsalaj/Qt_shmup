@@ -16,6 +16,11 @@
 Game::Game()
 {
 }
+Player *Game::getPlayer() const
+{
+    return player;
+}
+
 
 Game &Game::getInstance()
 {

@@ -60,6 +60,37 @@ void Player::keyPressEvent(QKeyEvent* event)
     }
 }
 
+bool Player::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type() == QEvent::MouseMove)
+    {
+        QMouseEvent* e = static_cast<QMouseEvent*>(event);
+        if(e != NULL)
+        {
+            mouse_x = e->pos().x();
+            mouse_y = e->pos().y();
+
+            setDirection();
+        }
+    }
+    else if(event->type() == QEvent::MouseButtonPress)
+    {
+//        QMouseEvent* e = static_cast<QMouseEvent*>(event);
+//        if(e->button() == Qt::LeftButton)
+//        {
+//            Bullet_01* bullet = new Bullet_01(this);
+//            bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
+//            scene()->addItem(bullet);
+//        }
+    } else {
+        // pass the event on to the parent class
+        //return QMainWindow::eventFilter(obj, event);
+        //FIXME: not needed?
+        return Game::getInstance().eventFilter(obj, event);
+    }
+    return false;
+}
+
 void Player::advance(int phase)
 {
     if(!phase) return;
@@ -97,10 +128,8 @@ void Player::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void Player::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    mouse_x = event->scenePos().x();
-    mouse_y = event->scenePos().y();
+//    mouse_x = event->scenePos().x();
+//    mouse_y = event->scenePos().y();
 
-    setDirection();
-
-    //qDebug() << "Player: mouse moved! dir = " << QString::number(direction);
+//    setDirection();
 }
