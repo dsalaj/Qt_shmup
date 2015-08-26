@@ -45,7 +45,7 @@ Game &Game::getInstance()
     return instance;
 }
 
-void Game::play()
+void Game::init()
 {
     scene = new QGraphicsScene(0,0,800,600);
     bg_pos = 0;
@@ -74,17 +74,22 @@ void Game::play()
     health = new Health(6);
     scene->addItem(health);
 
-    player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
-
     main_tick = new QTimer(scene);
     connect(main_tick, SIGNAL(timeout()), scene, SLOT(advance()));
     connect(main_tick, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
     main_tick->start(1000 / 33);
 
-    level = "..:..:.:..:.::.._b";
     enemy_spawn = new QTimer();
     connect(enemy_spawn,SIGNAL(timeout()),this,SLOT(gen()));
     enemy_spawn->start(enemy_spawn_timeout);
+}
+
+void Game::play()
+{
+    player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
+
+    //level = "..:..:.:..:.::.._b"
+    level = "..:___e";
 }
 
 void Game::addPoints(int points)
@@ -129,6 +134,10 @@ void Game::gen() {
         {
             Enemy_boss01* enemy = new Enemy_boss01(this, scene);
             scene->addItem(enemy);
+        }
+        else if(instruction == 'e')
+        {
+            play();
         }
     }
 }

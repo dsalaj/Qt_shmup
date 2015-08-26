@@ -14,6 +14,7 @@ class Game : public QObject
 public:
     ~Game();
     static Game& getInstance();
+    void init();
     void play();
     void addPoints(int points);
     void decHealth(int points);
