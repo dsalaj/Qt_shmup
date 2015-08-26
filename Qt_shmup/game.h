@@ -5,6 +5,7 @@
 #include "player.h"
 #include "score.h"
 
+#include <QGraphicsView>
 #include <QObject>
 
 class Game : public QObject
@@ -33,6 +34,8 @@ private:
     unsigned int bg_pos;
     QTimer* enemy_spawn;
     QString level;
+    QTimer* main_tick;
+    QGraphicsView* view;
 
 public slots:
     void move_bg();

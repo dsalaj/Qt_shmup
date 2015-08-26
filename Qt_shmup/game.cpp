@@ -60,7 +60,7 @@ void Game::play()
 
     scene->addItem(player);
 
-    QGraphicsView* view = new QGraphicsView(scene);
+    view = new QGraphicsView(scene);
     view->show();
     view->setFixedSize(scene->width(),scene->height());
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -76,10 +76,10 @@ void Game::play()
 
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-    QTimer* timer = new QTimer(scene);
-    connect(timer, SIGNAL(timeout()), scene, SLOT(advance()));
-    connect(timer, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
-    timer->start(1000 / 33);
+    main_tick = new QTimer(scene);
+    connect(main_tick, SIGNAL(timeout()), scene, SLOT(advance()));
+    connect(main_tick, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
+    main_tick->start(1000 / 33);
 
     level = "..:..:.:..:.::.._b";
     enemy_spawn = new QTimer();
