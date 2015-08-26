@@ -20,6 +20,7 @@ Game::Game() : background(NULL)
 void Game::move_bg()
 {
     // FIXXME: moving background wihtout tearing
+    delete background;
     background = new QPixmap(":/images/bg.png");
     background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
     //if(bg_pos % background->height() == 0) bg_pos = 0;
@@ -32,6 +33,11 @@ Player *Game::getPlayer() const
     return player;
 }
 
+
+Game::~Game()
+{
+    delete background;
+}
 
 Game &Game::getInstance()
 {

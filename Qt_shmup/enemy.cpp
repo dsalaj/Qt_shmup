@@ -34,7 +34,7 @@ void Enemy::setBoss_body(bool value)
 
 void Enemy::damage(unsigned int amount)
 {
-    if(!boss_body) health -= amount;
+    if(!boss_body) health -= amount; // FIXME: invalid read of size X error
 }
 
 void Enemy::check()
@@ -51,8 +51,8 @@ void Enemy::check()
                 {
                     damage(b->damage());
                     b->remove();
-                    QPixmap p = pixmap();
-                    p.fill(Qt::white);
+                    QPixmap p = pixmap(); // FIXME: invalid read of size X error
+                    p.fill(Qt::white); // FIXME: invalid read of size X error
                     p.setMask(pix.mask());
                     this->setPixmap(p);
                 }

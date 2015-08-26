@@ -11,6 +11,7 @@ class Game : public QObject
 {
     Q_OBJECT
 public:
+    ~Game();
     static Game& getInstance();
     void play();
     void addPoints(int points);
