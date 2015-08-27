@@ -14,7 +14,7 @@ class Game : public QObject
 public:
     ~Game();
     static Game& getInstance();
-    void init();
+    void init(QGraphicsScene* s);
     void play();
     void play(QString new_level);
     void showMessage(QString message, int time);

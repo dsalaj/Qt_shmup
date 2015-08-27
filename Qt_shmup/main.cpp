@@ -3,14 +3,18 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include "game.h"
+#include "mainwindow.h"
 #include "player.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Game::getInstance().init();
-    Game::getInstance().play();
+    MainWindow w;
+    w.show();
+
+//    Game::getInstance().init();
+//    Game::getInstance().play();
     a.installEventFilter(Game::getInstance().getPlayer());
 
     return a.exec();

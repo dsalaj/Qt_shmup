@@ -46,13 +46,14 @@ Game &Game::getInstance()
     return instance;
 }
 
-void Game::init()
+void Game::init(QGraphicsScene* s)
 {
-    scene = new QGraphicsScene(0,0,800,600);
-    bg_pos = 0;
-    background = new QPixmap(":/images/bg.png");
-    scene->setBackgroundBrush(QBrush(*background));
-    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex); // TODO: compare the two index methods
+    scene = s;
+    //scene = new QGraphicsScene(0,0,800,600);
+//    bg_pos = 0;
+//    background = new QPixmap(":/images/bg.png");
+//    scene->setBackgroundBrush(QBrush(*background));
+//    scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex); // TODO: compare the two index methods
     //scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 
     player = new Player(this);
@@ -61,13 +62,13 @@ void Game::init()
 
     scene->addItem(player);
 
-    view = new QGraphicsView(scene);
-    view->show();
-    view->setFixedSize(scene->width(),scene->height());
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setRenderHint(QPainter::Antialiasing); // TODO: see if it makes difference
-    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate); // TODO: test the performance with different policies
+//    view = new QGraphicsView(scene);
+//    view->show();
+//    view->setFixedSize(scene->width(),scene->height());
+//    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+//    view->setRenderHint(QPainter::Antialiasing); // TODO: see if it makes difference
+//    view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate); // TODO: test the performance with different policies
 
     score = new Score(0);
     scene->addItem(score);
@@ -77,7 +78,7 @@ void Game::init()
 
     main_tick = new QTimer(scene);
     connect(main_tick, SIGNAL(timeout()), scene, SLOT(advance()));
-    connect(main_tick, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
+    //connect(main_tick, SIGNAL(timeout()), &Game::getInstance(), SLOT(move_bg()));
     main_tick->start(1000 / 33);
 
     enemy_spawn = new QTimer();

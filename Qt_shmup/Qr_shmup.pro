@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     enemy_b01.cpp \
     enemy_boss01.cpp \
     enemy_b02.cpp \
-    levelmessage.cpp
+    levelmessage.cpp \
+    mainwindow.cpp
 
 HEADERS  += \
     bullet.h \
@@ -50,9 +51,11 @@ HEADERS  += \
     enemy_b01.h \
     enemy_boss01.h \
     enemy_b02.h \
-    levelmessage.h
+    levelmessage.h \
+    mainwindow.h
 
-FORMS    += dialog.ui
+FORMS    += dialog.ui \
+    mainwindow.ui
 
 RESOURCES += \
     res.qrc
