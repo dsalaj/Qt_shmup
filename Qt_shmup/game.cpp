@@ -36,7 +36,7 @@ Player *Game::getPlayer() const
 
 Game::~Game()
 {
-    delete background;
+    // FIXME: is cleanup necessary for members without set parent?
 }
 
 Game &Game::getInstance()
@@ -89,7 +89,8 @@ void Game::play()
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
     //level = "..:..:.:..:.::.._b"
-    level = "..:___e";
+    //level = "..:___r";
+    level = ":__e";
 }
 
 void Game::addPoints(int points)
@@ -135,9 +136,13 @@ void Game::gen() {
             Enemy_boss01* enemy = new Enemy_boss01(this, scene);
             scene->addItem(enemy);
         }
-        else if(instruction == 'e')
+        else if(instruction == 'r')
         {
             play();
+        }
+        else if(instruction == 'e')
+        {
+            exit(0);
         }
     }
 }
