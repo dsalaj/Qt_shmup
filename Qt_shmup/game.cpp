@@ -7,13 +7,14 @@
 #include "enemy_02.h"
 #include "enemy_b01.h"
 #include "enemy_boss01.h"
+#include "levelmessage.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QImage>
 #include <QTimer>
 
-Game::Game() : background(NULL)
+Game::Game() : background(NULL), level_number(0)
 {
 }
 
@@ -90,7 +91,7 @@ void Game::play()
 
     //level = "..:..:.:..:.::.._b"
     //level = "..:___r";
-    level = ":__e";
+    level = "._er";
 }
 
 void Game::play(QString new_level)
@@ -100,15 +101,10 @@ void Game::play(QString new_level)
     level = new_level;
 }
 
-void Game::showMessage(QString message)
+void Game::showMessage(QString message, int time)
 {
-    //TODO: make the message timed
-    QGraphicsTextItem* m = new QGraphicsTextItem();
-    m->setPlainText(message);
-    m->setDefaultTextColor(QColor(255,200,210));
-    m->setPos(scene->width()/2 - m->boundingRect().width()/2, scene->height()/2);
-    m->show();
-
+    LevelMessage* m = new LevelMessage(message, time);
+    m->setPos(scene->width()/2 - (m->boundingRect().width()/2)*5, scene->height()/2-m->boundingRect().height()*5);
     scene->addItem(m);
 }
 
@@ -162,7 +158,7 @@ void Game::gen() {
         else if(instruction == 'e')
         {
             //exit(0);
-            showMessage("Game Over");
+            showMessage("Level " + QString::number(level_number++), 2000);
         }
     }
 }

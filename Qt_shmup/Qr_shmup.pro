@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     bullet_e01.cpp \
     enemy_b01.cpp \
     enemy_boss01.cpp \
-    enemy_b02.cpp
+    enemy_b02.cpp \
+    levelmessage.cpp
 
 HEADERS  += \
     bullet.h \
@@ -48,7 +49,8 @@ HEADERS  += \
     bullet_e01.h \
     enemy_b01.h \
     enemy_boss01.h \
-    enemy_b02.h
+    enemy_b02.h \
+    levelmessage.h
 
 FORMS    += dialog.ui
 

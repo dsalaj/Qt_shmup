@@ -17,7 +17,7 @@ public:
     void init();
     void play();
     void play(QString new_level);
-    void showMessage(QString message);
+    void showMessage(QString message, int time);
     void addPoints(int points);
     void decHealth(int points);
     int random_xpos(int sw, int pw);
@@ -39,6 +39,7 @@ private:
     QString level;
     QTimer* main_tick;
     QGraphicsView* view;
+    unsigned int level_number;
 
 public slots:
     void move_bg();
