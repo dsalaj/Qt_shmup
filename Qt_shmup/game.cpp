@@ -93,6 +93,25 @@ void Game::play()
     level = ":__e";
 }
 
+void Game::play(QString new_level)
+{
+    player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
+
+    level = new_level;
+}
+
+void Game::showMessage(QString message)
+{
+    //TODO: make the message timed
+    QGraphicsTextItem* m = new QGraphicsTextItem();
+    m->setPlainText(message);
+    m->setDefaultTextColor(QColor(255,200,210));
+    m->setPos(scene->width()/2 - m->boundingRect().width()/2, scene->height()/2);
+    m->show();
+
+    scene->addItem(m);
+}
+
 void Game::addPoints(int points)
 {
     score->addPoints(points);
@@ -142,7 +161,8 @@ void Game::gen() {
         }
         else if(instruction == 'e')
         {
-            exit(0);
+            //exit(0);
+            showMessage("Game Over");
         }
     }
 }

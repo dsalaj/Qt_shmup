@@ -16,6 +16,8 @@ public:
     static Game& getInstance();
     void init();
     void play();
+    void play(QString new_level);
+    void showMessage(QString message);
     void addPoints(int points);
     void decHealth(int points);
     int random_xpos(int sw, int pw);
