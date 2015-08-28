@@ -17,9 +17,7 @@
 Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
-
-//    bulletSound = new QMediaPlayer(this);
-//    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
+    bulletSound = new QMediaPlayer(this);
 }
 
 void Player::keyPressEvent(QKeyEvent* event)
@@ -42,18 +40,6 @@ void Player::keyPressEvent(QKeyEvent* event)
         Bullet_01* bullet = new Bullet_01(this);
         bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
         scene()->addItem(bullet);
-
-//        qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
-//        if(bulletSound->state() == QMediaPlayer::PlayingState || bulletSound->mediaStatus() == QMediaPlayer::EndOfMedia)
-//        {
-//            bulletSound->setPosition(0);
-//            qDebug() << "bullet->setPosition(0)";
-//        }
-//        else if(bulletSound->state() == QMediaPlayer::StoppedState)
-//        {
-//            bulletSound->play();
-//            qDebug() << "bullet->play()";
-//        }
     }
     else if(event->key() == Qt::Key_G) {
         Game::getInstance().gen();
@@ -107,6 +93,16 @@ void Player::advance(int phase)
         Bullet_01* bullet = new Bullet_01(this);
         bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
         scene()->addItem(bullet);
+//        //qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
+//        if(bulletSound->state() == QMediaPlayer::PlayingState ||
+//           bulletSound->mediaStatus() == QMediaPlayer::EndOfMedia ||
+//           bulletSound->state() == QMediaPlayer::StoppedState)
+//        {
+//            bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
+//            bulletSound->setPosition(0);
+//            bulletSound->play();
+//            //qDebug() << "bullet->setPosition(0)";
+//        }
     }
 }
 
@@ -126,4 +122,3 @@ void Player::setDirection()
         direction = 0;
     }
 }
-

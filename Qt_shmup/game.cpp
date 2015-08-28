@@ -91,7 +91,6 @@ void Game::play()
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
     //level = "..:..:.:..:.::.._b"
-    //level = "..:___r";
     level = "._er";
 }
 

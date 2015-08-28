@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    scene = new QGraphicsScene(0,0,800,600);
+    //scene = new QGraphicsScene(0,0,800,600);
+    scene = new QGraphicsScene(0,0,ui->graphicsView->width(), ui->graphicsView->height());
     background = new QPixmap(":/images/bg.png");
     scene->setBackgroundBrush(QBrush(*background));
     //view = new QGraphicsView(scene);

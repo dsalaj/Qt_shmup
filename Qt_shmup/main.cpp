@@ -12,6 +12,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.show();
+    //w.showFullScreen();
 
 //    Game::getInstance().init();
 //    Game::getInstance().play();
