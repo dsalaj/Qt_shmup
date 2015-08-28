@@ -21,12 +21,12 @@ Game::Game() : background(NULL), level_number(0)
 void Game::move_bg()
 {
     // FIXXME: moving background wihtout tearing
-    delete background;
-    background = new QPixmap(":/images/bg.png");
-    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
-    //if(bg_pos % background->height() == 0) bg_pos = 0;
-    //scene->setBackgroundBrush(QBrush(Qt::black));
-    scene->setBackgroundBrush(QBrush(*background));
+//    delete background;
+//    background = new QPixmap(":/images/bg.png");
+//    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
+//    //if(bg_pos % background->height() == 0) bg_pos = 0;
+//    //scene->setBackgroundBrush(QBrush(Qt::black));
+//    scene->setBackgroundBrush(QBrush(*background));
 }
 
 Player *Game::getPlayer() const
@@ -89,9 +89,9 @@ void Game::play()
 {
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-    //level = "..:..:.:..:.::.._b"
+    level = "..:..:.:..:.::.._b_________________er";
     //level = "..:___r";
-    level = "._er";
+    //level = "._er";
 }
 
 void Game::play(QString new_level)
@@ -158,7 +158,7 @@ void Game::gen() {
         else if(instruction == 'e')
         {
             //exit(0);
-            showMessage("Level " + QString::number(level_number++), 2000);
+            showMessage("Level " + QString::number(++level_number), 2000);
         }
     }
 }
