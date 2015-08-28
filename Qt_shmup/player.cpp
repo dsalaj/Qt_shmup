@@ -22,44 +22,6 @@ Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mous
 //    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
 }
 
-void Player::keyPressEvent(QKeyEvent* event)
-{
-    if(event->key() == Qt::Key_Down) {
-        setPos(x(), y()+player_speed);
-    }
-    else if(event->key() == Qt::Key_Up) {
-        setPos(x(), y()-player_speed);
-    }
-    else if(event->key() == Qt::Key_Right &&
-            x() < scene()->width() - this->pixmap().width()) {
-        setPos(x()+player_speed, y());
-    }
-    else if(event->key() == Qt::Key_Left &&
-            x() > 0) {
-        setPos(x()-player_speed, y());
-    }
-    else if(event->key() == Qt::Key_Space) {
-        Bullet_01* bullet = new Bullet_01(this);
-        bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
-        scene()->addItem(bullet);
-
-//        qDebug() << "bulletSound media status = " << QString::number(bulletSound->mediaStatus());
-//        if(bulletSound->state() == QMediaPlayer::PlayingState || bulletSound->mediaStatus() == QMediaPlayer::EndOfMedia)
-//        {
-//            bulletSound->setPosition(0);
-//            qDebug() << "bullet->setPosition(0)";
-//        }
-//        else if(bulletSound->state() == QMediaPlayer::StoppedState)
-//        {
-//            bulletSound->play();
-//            qDebug() << "bullet->play()";
-//        }
-    }
-    else if(event->key() == Qt::Key_G) {
-        Game::getInstance().gen();
-    }
-}
-
 bool Player::eventFilter(QObject *obj, QEvent *event)
 {
     if(event->type() == QEvent::MouseMove)
