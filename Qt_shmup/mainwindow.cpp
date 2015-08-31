@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QPushButton>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -14,11 +16,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    Game::getInstance().init(scene);
-    Game::getInstance().play();
+
+    QPushButton* b1 = new QPushButton("Start", this);
+    ui->verticalLayout->addWidget(b1);
+    connect(b1,SIGNAL(pressed()),this,SLOT(start()));
+
+    //Game::getInstance().init(scene);
+    //Game::getInstance().play();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::start()
+{
+    Game::getInstance().init(scene);
+    Game::getInstance().play();
 }

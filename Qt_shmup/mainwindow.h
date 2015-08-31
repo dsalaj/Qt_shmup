@@ -22,6 +22,8 @@ private:
     QGraphicsScene* scene;
     QGraphicsView* view;
     QPixmap* background;
+public slots:
+    void start();
 };
 
 #endif // MAINWINDOW_H

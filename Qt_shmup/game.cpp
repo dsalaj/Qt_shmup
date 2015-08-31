@@ -90,8 +90,8 @@ void Game::play()
 {
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
 
-    //level = "..:..:.:..:.::.._b"
-    level = "._er";
+    level = "..:..:.:..:.::.._b";
+    //level = "._er";
 }
 
 void Game::play(QString new_level)
