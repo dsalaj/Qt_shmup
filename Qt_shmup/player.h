@@ -12,6 +12,8 @@ public:
     explicit Player(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);    
     bool eventFilter(QObject *obj, QEvent *event);
+    void move(QPoint pos);
+    void setShoot(bool value);
 private:
     QMediaPlayer* bulletSound;
     int direction;

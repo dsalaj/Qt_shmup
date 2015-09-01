@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
 //    Game::getInstance().init();
 //    Game::getInstance().play();
-    a.installEventFilter(Game::getInstance().getPlayer());
+    a.installEventFilter(&w);
 
     return a.exec();
 }

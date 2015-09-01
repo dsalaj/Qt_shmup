@@ -75,6 +75,18 @@ bool Player::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+void Player::move(QPoint pos)
+{
+    mouse_x = pos.x();
+    mouse_y = pos.y();
+    setDirection();
+}
+
+void Player::setShoot(bool value)
+{
+    shoot = value;
+}
+
 void Player::advance(int phase)
 {
     if(!phase) return;

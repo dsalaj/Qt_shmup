@@ -35,3 +35,32 @@ void MainWindow::start()
     Game::getInstance().init(scene);
     Game::getInstance().play();
 }
+
+bool MainWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    if(event->type() == QEvent::MouseMove)
+    {
+        QMouseEvent* e = static_cast<QMouseEvent*>(event);
+        if(e != NULL)
+        {
+            if(Game::getInstance().getPlayer())
+                Game::getInstance().getPlayer()->move(e->pos()); //FIXME: delay with bool member just like shoot
+        }
+    }
+    else if(event->type() == QEvent::MouseButtonPress)
+    {
+        QMouseEvent* e = static_cast<QMouseEvent*>(event);
+        if(e->button() == Qt::LeftButton)
+        {
+            if(Game::getInstance().getPlayer())
+                Game::getInstance().getPlayer()->setShoot(true);
+        }
+
+    } else {
+        // pass the event on to the parent class
+        //return QMainWindow::eventFilter(obj, event);
+        //FIXME: not needed?
+        return Game::getInstance().eventFilter(obj, event);
+    }
+    return false;
+}
