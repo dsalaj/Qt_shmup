@@ -17,6 +17,7 @@
 Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
+    setZValue(1);
 
 //    bulletSound = new QMediaPlayer(this);
 //    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));

@@ -8,6 +8,7 @@
 #include "enemy_b01.h"
 #include "enemy_boss01.h"
 #include "levelmessage.h"
+#include "star_01.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -27,6 +28,11 @@ void Game::move_bg()
 //    //if(bg_pos % background->height() == 0) bg_pos = 0;
 //    //scene->setBackgroundBrush(QBrush(Qt::black));
 //    scene->setBackgroundBrush(QBrush(*background));
+    if(qrand()%100 < 10)
+    {
+        Star_01* s = new Star_01(this, scene);
+        scene->addItem(s);
+    }
 }
 
 Player *Game::getPlayer() const
@@ -51,7 +57,8 @@ void Game::init()
     scene = new QGraphicsScene(0,0,800,600);
     bg_pos = 0;
     background = new QPixmap(":/images/bg.png");
-    scene->setBackgroundBrush(QBrush(*background));
+    //scene->setBackgroundBrush(QBrush(*background));
+    scene->setBackgroundBrush(Qt::black);
     scene->setItemIndexMethod(QGraphicsScene::BspTreeIndex); // TODO: compare the two index methods
     //scene->setItemIndexMethod(QGraphicsScene::NoIndex);
 

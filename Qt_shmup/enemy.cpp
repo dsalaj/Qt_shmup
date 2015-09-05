@@ -14,7 +14,7 @@ extern Game* game;
 Enemy::Enemy(QObject *parent, unsigned int speed, int health, unsigned int score) :
              QObject(parent), speed(speed), health(health), score(score), boss_body(false)
 {
-
+    setZValue(2);
 }
 
 Enemy::~Enemy()

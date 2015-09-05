@@ -13,6 +13,7 @@ Enemy_boss01::Enemy_boss01(QObject *parent, QGraphicsScene *scene) : QObject(par
     addToGroup(rightw);
     Enemy_b01* core = new Enemy_b01(this, scene);
     addToGroup(core);
+    setZValue(2);
 }
 
 void Enemy_boss01::advance(int phase)

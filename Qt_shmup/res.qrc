@@ -13,5 +13,6 @@
         <file>bullet_e01.png</file>
         <file>boss1.png</file>
         <file>boss1a.png</file>
+        <file>star1.png</file>
     </qresource>
 </RCC>

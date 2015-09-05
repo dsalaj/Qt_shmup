@@ -4,6 +4,7 @@
 
 Bullet::Bullet(QObject *parent, unsigned int damage) : QObject(parent), dmg(damage)
 {
+    setZValue(3);
 }
 
 Bullet::~Bullet()
