@@ -66,8 +66,6 @@ void Game::init()
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
-    scene->addItem(player);
-
     view = new QGraphicsView(scene);
     view->show();
     view->setFixedSize(scene->width(),scene->height());
@@ -77,10 +75,7 @@ void Game::init()
     view->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate); // TODO: test the performance with different policies
 
     score = new Score(0);
-    scene->addItem(score);
-
     health = new Health(6);
-    scene->addItem(health);
 
     main_tick = new QTimer(scene);
     connect(main_tick, SIGNAL(timeout()), scene, SLOT(advance()));
@@ -89,23 +84,22 @@ void Game::init()
 
     enemy_spawn = new QTimer();
     connect(enemy_spawn,SIGNAL(timeout()),this,SLOT(gen()));
-    enemy_spawn->start(enemy_spawn_timeout);
 }
 
 void Game::play()
 {
-    player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
-
     level = "..:..:.:..:.::.._b_________________er";
-    //level = "..:___r";
-    //level = "._er";
+    play(level);
 }
 
 void Game::play(QString new_level)
 {
+    scene->addItem(player);
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
-
     level = new_level;
+    enemy_spawn->start(enemy_spawn_timeout);
+    scene->addItem(health);
+    scene->addItem(score);
 }
 
 void Game::showMessage(QString message, int time)
