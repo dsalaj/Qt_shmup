@@ -7,8 +7,6 @@
 #include "game.h"
 #include "constants.h"
 
-extern Game* game;
-
 class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT

@@ -9,6 +9,7 @@
 #include "enemy_boss01.h"
 #include "levelmessage.h"
 #include "star_01.h"
+#include "button.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -38,6 +39,16 @@ void Game::move_bg()
 Player *Game::getPlayer() const
 {
     return player;
+}
+
+void Game::menu()
+{
+    showMessage("..:: QT SHMUP ::..", 15000);
+    Button* b = new Button(this);
+    b->setPixmap(QPixmap(":/images/spaceship.png"));
+    b->setPos(350, 340);
+    scene->addItem(b);
+    //connect(b, SIGNAL(), b, SLOT(clicked());
 }
 
 

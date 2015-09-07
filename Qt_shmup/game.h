@@ -22,6 +22,7 @@ public:
     void decHealth(int points);
     int random_xpos(int sw, int pw);
     Player *getPlayer() const;
+    void menu();
 
 private:
     static Game* instance;
