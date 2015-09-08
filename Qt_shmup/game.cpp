@@ -44,36 +44,18 @@ Player *Game::getPlayer() const
 
 void Game::menuShow()
 {
-    menu = new QVector<QObject*>();
-
     Button_play* bp = new Button_play(this);
     bp->setPixmap(QPixmap(":/images/menu_play.png"));
     bp->setPos(100, 500);
+    bp->setZValue(4);
     scene->addItem(bp);
-    //menu->addToGroup(bp);
-    menu->append(bp);
 
-    Button* b = new Button(bp);
-    b->setPixmap(QPixmap(":/images/logo_scale.png"));
-    //menu->addToGroup(b);
-    scene->addItem(b);
-    menu->append(b);
+    Button* splash = new Button(bp);
+    splash->setPixmap(QPixmap(":/images/logo_scale.png"));
+    splash->setZValue(4);
+    scene->addItem(splash);
 
-//    menu->setZValue(4);
-//    scene->addItem(menu);
-//    menu->setFocus();
 }
-
-void Game::menuRemove()
-{
-    while(!menu->isEmpty())
-    {
-        delete menu->first();
-//        QGraphicsPixmapItem* p = dynamic_cast<QGraphicsPixmapItem*>(menu->first());
-//        if(p) p->hide(); //FIXME: freezes!
-    }
-}
-
 
 Game::~Game()
 {

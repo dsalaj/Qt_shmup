@@ -23,7 +23,6 @@ public:
     int random_xpos(int sw, int pw);
     Player *getPlayer() const;
     void menuShow();
-    void menuRemove();
 
 private:
     static Game* instance;
@@ -42,7 +41,6 @@ private:
     QTimer* main_tick;
     QGraphicsView* view;
     unsigned int level_number;
-    QVector<QObject*>* menu;
 
 public slots:
     void move_bg();

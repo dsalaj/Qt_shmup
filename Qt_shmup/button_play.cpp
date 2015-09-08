@@ -28,7 +28,5 @@ void Button_play::mousePressEvent(QGraphicsSceneMouseEvent *e)
 void Button_play::clicked()
 {
     Game::getInstance().play();
-    Game::getInstance().menuRemove();
-    //delete this;
-    qDebug() << "Button_play clicked!";
+    delete this;
 }
