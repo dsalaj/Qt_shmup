@@ -10,6 +10,7 @@
 #include "levelmessage.h"
 #include "star_01.h"
 #include "button.h"
+#include "button_play.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -41,14 +42,36 @@ Player *Game::getPlayer() const
     return player;
 }
 
-void Game::menu()
+void Game::menuShow()
 {
-    showMessage("..:: QT SHMUP ::..", 15000);
-    Button* b = new Button(this);
-    b->setPixmap(QPixmap(":/images/spaceship.png"));
-    b->setPos(350, 340);
+    menu = new QVector<QObject*>();
+
+    Button_play* bp = new Button_play(this);
+    bp->setPixmap(QPixmap(":/images/menu_play.png"));
+    bp->setPos(100, 500);
+    scene->addItem(bp);
+    //menu->addToGroup(bp);
+    menu->append(bp);
+
+    Button* b = new Button(bp);
+    b->setPixmap(QPixmap(":/images/logo_scale.png"));
+    //menu->addToGroup(b);
     scene->addItem(b);
-    //connect(b, SIGNAL(), b, SLOT(clicked());
+    menu->append(b);
+
+//    menu->setZValue(4);
+//    scene->addItem(menu);
+//    menu->setFocus();
+}
+
+void Game::menuRemove()
+{
+    while(!menu->isEmpty())
+    {
+        delete menu->first();
+//        QGraphicsPixmapItem* p = dynamic_cast<QGraphicsPixmapItem*>(menu->first());
+//        if(p) p->hide(); //FIXME: freezes!
+    }
 }
 
 

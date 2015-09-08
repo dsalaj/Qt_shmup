@@ -14,5 +14,8 @@
         <file>boss1.png</file>
         <file>boss1a.png</file>
         <file>star1.png</file>
+        <file>logo_scale.png</file>
+        <file>menu_exit.png</file>
+        <file>menu_play.png</file>
     </qresource>
 </RCC>

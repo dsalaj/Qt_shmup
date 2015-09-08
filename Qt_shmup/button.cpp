@@ -1,4 +1,5 @@
 #include "button.h"
+#include "game.h"
 
 Button::Button(QObject *parent) : QObject(parent)
 {
@@ -25,6 +26,6 @@ void Button::mousePressEvent(QGraphicsSceneMouseEvent *e)
 
 void Button::clicked()
 {
-    this->setPixmap(QPixmap(":/images/boss1.png"));
+    qDebug() << "Button clicked!";
 }
 

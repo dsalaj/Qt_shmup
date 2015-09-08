@@ -1,16 +1,16 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BUTTON_PLAY_H
+#define BUTTON_PLAY_H
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 
-class Button : public QObject, public QGraphicsPixmapItem
+class Button_play : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Button(QObject *parent = 0);
+    explicit Button_play(QObject *parent = 0);
 protected:
     bool m_mouseClick;
     QPointF m_lastPoint;
@@ -21,4 +21,4 @@ public slots:
     virtual void clicked();
 };
 
-#endif // BUTTON_H
+#endif // BUTTON_PLAY_H

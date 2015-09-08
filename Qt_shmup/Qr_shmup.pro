@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     enemy_b02.cpp \
     levelmessage.cpp \
     star_01.cpp \
-    button.cpp
+    button.cpp \
+    button_play.cpp
 
 HEADERS  += \
     bullet.h \
@@ -54,7 +55,8 @@ HEADERS  += \
     enemy_b02.h \
     levelmessage.h \
     star_01.h \
-    button.h
+    button.h \
+    button_play.h
 
 FORMS    += dialog.ui
 
