@@ -11,7 +11,7 @@ const int enemy_spawn_timeout = 1200 * speed_factor;
 
 const unsigned int speed_e01 = 2 * speed_factor;
 const unsigned int speed_e02 = 1 * speed_factor;
-const unsigned int speed_eb01 = 2 * speed_factor;
+const unsigned int speed_eb01 = 3 * speed_factor;
 
 const unsigned int health_e01 = 2;
 const unsigned int health_e02 = 5;

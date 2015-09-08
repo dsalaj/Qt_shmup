@@ -2,6 +2,8 @@
 #include "game.h"
 #include "bullet_player.h"
 #include "enemy.h"
+#include "enemy_boss01.h"
+#include "enemy_b01.h"
 
 #include <QTimer>
 #include <QGraphicsScene>
@@ -58,6 +60,10 @@ void Enemy::check()
                 }
                 if(health <= 0)
                 {
+                    if(dynamic_cast<Enemy_b01*>(this))
+                    {
+                        Game::getInstance().levelFinished();
+                    }
                     Game::getInstance().addPoints(score);
                     delete this;
                 }

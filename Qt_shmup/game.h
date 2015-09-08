@@ -23,6 +23,7 @@ public:
     int random_xpos(int sw, int pw);
     Player *getPlayer() const;
     void menuShow();
+    void levelFinished();
 
 private:
     static Game* instance;

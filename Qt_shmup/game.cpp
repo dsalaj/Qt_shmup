@@ -57,6 +57,11 @@ void Game::menuShow()
 
 }
 
+void Game::levelFinished()
+{
+    menuShow();
+}
+
 Game::~Game()
 {
     // FIXME: is cleanup necessary for members without set parent?
@@ -104,7 +109,7 @@ void Game::init()
 
 void Game::play()
 {
-    level = "..:..:.:..:.::.._b_________________er";
+    level = "..:..:.:..:.::.._b";
     play(level);
 }
 
