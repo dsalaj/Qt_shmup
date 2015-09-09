@@ -11,7 +11,7 @@ Score::Score(unsigned int s) : score(s)
 
 void Score::addPoints(int points)
 {
-    score += points;
+    if(static_cast<int>(score) + points >= 0) score += points;
     setPlainText("Score: " + QString::number(score));
     show();
 }

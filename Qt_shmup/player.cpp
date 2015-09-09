@@ -14,10 +14,12 @@
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 
-Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false)
+Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false), in_shop(false)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
     setZValue(1);
+    shooter = new QTimer(this);
+    connect(shooter, SIGNAL(timeout()), this, SLOT(shoot_shop()));
 
 //    bulletSound = new QMediaPlayer(this);
 //    bulletSound->setMedia(QUrl("qrc:/sounds/bullet2.wav"));
@@ -25,7 +27,7 @@ Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mous
 
 bool Player::eventFilter(QObject *obj, QEvent *event)
 {
-    if(event->type() == QEvent::MouseMove)
+    if(event->type() == QEvent::MouseMove && !in_shop)
     {
         QMouseEvent* e = static_cast<QMouseEvent*>(event);
         if(e != NULL)
@@ -35,7 +37,7 @@ bool Player::eventFilter(QObject *obj, QEvent *event)
             setDirection();
         }
     }
-    else if(event->type() == QEvent::MouseButtonPress)
+    else if(event->type() == QEvent::MouseButtonPress && !in_shop)
     {
         QMouseEvent* e = static_cast<QMouseEvent*>(event);
         if(e->button() == Qt::LeftButton)
@@ -52,15 +54,29 @@ bool Player::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
+void Player::setInShop(bool value)
+{
+    in_shop = value;
+    if(in_shop == true)
+    {
+        shooter->start(300);
+    }
+    else
+    {
+        shooter->stop();
+    }
+
+}
+
 void Player::advance(int phase)
 {
     if(!phase) return;
     setDirection();
-    if(direction > 0)
+    if(direction > 0 && !in_shop)
     {
         setPos(x()+player_speed, y());
     }
-    else if(direction < 0)
+    else if(direction < 0 && !in_shop)
     {
         setPos(x()-player_speed, y());
     }
@@ -90,3 +106,7 @@ void Player::setDirection()
     }
 }
 
+void Player::shoot_shop()
+{
+    shoot = true;
+}

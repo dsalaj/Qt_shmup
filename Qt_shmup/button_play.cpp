@@ -6,6 +6,11 @@ Button_play::Button_play(QObject *parent) : QObject(parent)
 
 }
 
+Button_play::~Button_play()
+{
+    Game::getInstance().getPlayer()->setInShop(false);
+}
+
 void Button_play::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)
 {
     // check if cursor not moved since click beginning

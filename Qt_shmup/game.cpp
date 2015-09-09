@@ -11,6 +11,7 @@
 #include "star_01.h"
 #include "button.h"
 #include "button_play.h"
+#include "button_w2.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -54,12 +55,30 @@ void Game::menuShow()
     splash->setPixmap(QPixmap(":/images/logo_scale.png"));
     splash->setZValue(4);
     scene->addItem(splash);
-
 }
 
 void Game::levelFinished()
 {
-    menuShow();
+    //Show shop here!
+
+    Button_play* bp = new Button_play(this);
+    bp->setPixmap(QPixmap(":/images/menu_play.png"));
+    bp->setPos(600, 500);
+    bp->setZValue(4);
+    scene->addItem(bp);
+
+    Button_w2* b = new Button_w2(bp);
+    b->setZValue(4);
+    b->setPos(400,300);
+    scene->addItem(b);
+
+    Button_w2* b2 = new Button_w2(bp);
+    b2->setZValue(4);
+    b2->setPos(400,400);
+    scene->addItem(b2);
+
+    player->setInShop(true);
+    player->setPos(100,player->y());
 }
 
 Game::~Game()
@@ -109,7 +128,8 @@ void Game::init()
 
 void Game::play()
 {
-    level = "..:..:.:..:.::.._b";
+    //level = "..:..:.:..:.::.._b";
+    level = "b";
     play(level);
 }
 

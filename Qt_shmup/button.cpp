@@ -26,6 +26,5 @@ void Button::mousePressEvent(QGraphicsSceneMouseEvent *e)
 
 void Button::clicked()
 {
-    qDebug() << "Button clicked!";
 }
 

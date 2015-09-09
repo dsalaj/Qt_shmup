@@ -11,6 +11,7 @@ class Button_play : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     explicit Button_play(QObject *parent = 0);
+    ~Button_play();
 protected:
     bool m_mouseClick;
     QPointF m_lastPoint;
