@@ -128,8 +128,8 @@ void Game::init()
 
 void Game::play()
 {
-    //level = "..:..:.:..:.::.._b";
-    level = "b";
+    level = "..:..:.:..:.::.._b";
+    //level = "b";
     play(level);
 }
 

@@ -34,7 +34,8 @@ SOURCES += main.cpp \
     star_01.cpp \
     button.cpp \
     button_play.cpp \
-    button_w2.cpp
+    button_w2.cpp \
+    utility.cpp
 
 HEADERS  += \
     bullet.h \
@@ -58,7 +59,8 @@ HEADERS  += \
     star_01.h \
     button.h \
     button_play.h \
-    button_w2.h
+    button_w2.h \
+    utility.h
 
 FORMS    += dialog.ui
 
