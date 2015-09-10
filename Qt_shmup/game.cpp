@@ -155,6 +155,11 @@ void Game::addPoints(int points)
     score->addPoints(points);
 }
 
+int Game::getPoints()
+{
+    return score->getScore();
+}
+
 void Game::decHealth(int points)
 {
     health->decHealth(points);

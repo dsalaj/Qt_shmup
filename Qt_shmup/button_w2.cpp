@@ -9,5 +9,9 @@ Button_w2::Button_w2(QObject *parent) : Button(parent)
 
 void Button_w2::clicked()
 {
-    Game::getInstance().addPoints(-1);
+    if(Game::getInstance().getPoints() >= 20)
+    {
+        Game::getInstance().addPoints(-20);
+        Game::getInstance().getPlayer()->bullet_type = 2;
+    }
 }

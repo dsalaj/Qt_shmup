@@ -14,7 +14,15 @@
 #include <QDebug>
 #include <QGraphicsSceneMouseEvent>
 
-Player::Player(QObject *parent) : QObject(parent), direction(0), center(0), mouse_x(0), mouse_y(0), shoot(false), in_shop(false)
+Player::Player(QObject *parent) :
+    QObject(parent),
+    bullet_type(1),
+    direction(0),
+    center(0),
+    mouse_x(0),
+    mouse_y(0),
+    shoot(false),
+    in_shop(false)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
     setZValue(1);
@@ -83,7 +91,16 @@ void Player::advance(int phase)
     if(shoot == true)
     {
         shoot = false;
-        Bullet_01* bullet = new Bullet_01(this);
+        Bullet_player* bullet = NULL;
+        switch(bullet_type)
+        {
+        case 1:
+            bullet = new Bullet_01(this);
+            break;
+        case 2:
+            bullet = new Bullet_02(this);
+            break;
+        }
         bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
         scene()->addItem(bullet);
     }

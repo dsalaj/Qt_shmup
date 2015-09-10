@@ -19,6 +19,7 @@ public:
     void play(QString new_level);
     void showMessage(QString message, int time);
     void addPoints(int points);
+    int getPoints();
     void decHealth(int points);
     int random_xpos(int sw, int pw);
     Player *getPlayer() const;

@@ -15,4 +15,9 @@ void Score::addPoints(int points)
     setPlainText("Score: " + QString::number(score));
     show();
 }
+unsigned int Score::getScore() const
+{
+    return score;
+}
+
 

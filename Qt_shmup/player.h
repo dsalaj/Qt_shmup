@@ -13,6 +13,7 @@ public:
     explicit Player(QObject *parent = 0);
     bool eventFilter(QObject *obj, QEvent *event);
     void setInShop(bool value);
+    int bullet_type;
 private:
     QMediaPlayer* bulletSound;
     int direction;
