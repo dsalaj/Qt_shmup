@@ -12,6 +12,7 @@
 #include "button.h"
 #include "button_play.h"
 #include "button_w2.h"
+#include "button_w1.h"
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -67,7 +68,7 @@ void Game::levelFinished()
     bp->setZValue(4);
     scene->addItem(bp);
 
-    Button_w2* b = new Button_w2(bp);
+    Button_w1* b = new Button_w1(bp);
     b->setZValue(4);
     b->setPos(400,300);
     scene->addItem(b);
@@ -128,8 +129,8 @@ void Game::init()
 
 void Game::play()
 {
-    level = "..:..:.:..:.::.._b";
-    //level = "b";
+    //level = "..:..:.:..:.::.._b";
+    level = "b";
     play(level);
 }
 

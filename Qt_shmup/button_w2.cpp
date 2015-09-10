@@ -1,10 +1,8 @@
 #include "button_w2.h"
-#include "game.h"
-#include "utility.h"
 
 Button_w2::Button_w2(QObject *parent) : Button(parent)
 {
-    setPixmap(QPixmap(":/images/enemy1.png"));
+    setPixmap(QPixmap(":/images/shop_w2.png"));
 
 }
 

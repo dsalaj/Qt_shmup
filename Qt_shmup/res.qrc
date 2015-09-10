@@ -16,5 +16,7 @@
         <file>logo_scale.png</file>
         <file>menu_exit.png</file>
         <file>menu_play.png</file>
+        <file>shop_w2.png</file>
+        <file>shop_w1.png</file>
     </qresource>
 </RCC>
