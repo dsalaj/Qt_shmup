@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     Game::getInstance().init();
-    //Game::getInstance().play();
+
     Game::getInstance().menuShow();
     a.installEventFilter(Game::getInstance().getPlayer());
 

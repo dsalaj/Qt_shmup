@@ -1,4 +1,4 @@
-#include "game.h"
+﻿#include "game.h"
 #include "player.h"
 #include "score.h"
 #include "health.h"
@@ -25,13 +25,6 @@ Game::Game() : background(NULL), level_number(0)
 
 void Game::move_bg()
 {
-    // FIXXME: moving background wihtout tearing
-//    delete background;
-//    background = new QPixmap(":/images/bg.png");
-//    background->scroll(0, bg_pos++, 0, 0, scene->width(), scene->height());
-//    //if(bg_pos % background->height() == 0) bg_pos = 0;
-//    //scene->setBackgroundBrush(QBrush(Qt::black));
-//    scene->setBackgroundBrush(QBrush(*background));
     if(qrand()%100 < 10)
     {
         Star_01* s = new Star_01(this, scene);
@@ -129,19 +122,27 @@ void Game::init()
 
 void Game::play()
 {
-    //level = "..:..:.:..:.::.._b";
-    level = "b";
-    play(level);
+    play(new QFile(":/levels/level1.txt"));
 }
 
-void Game::play(QString new_level)
+void Game::play(QFile* new_level)
 {
     scene->addItem(player);
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
-    level = new_level;
-    enemy_spawn->start(enemy_spawn_timeout);
     scene->addItem(health);
     scene->addItem(score);
+
+    level_file = new_level;
+    if(level_file->open(QIODevice::ReadOnly))
+    {
+        level_stream = new QTextStream(level_file);
+        enemy_spawn->start(enemy_spawn_timeout);
+    }
+    else
+    {
+        qDebug() << "Could not open level file";
+        exit(1);
+    }
 }
 
 void Game::showMessage(QString message, int time)
@@ -176,37 +177,44 @@ int Game::random_xpos(int sw, int pw)
 
 void Game::gen() {
 
+    level = level_stream->readLine();
     if(!level.isEmpty())
     {
-        QChar instruction = level.at(0);
-        level.remove(0,1);
-        if(instruction == '.')
+        for(int index = 0; index < 19; index++)
         {
-            Enemy_01* enemy = new Enemy_01(this, scene);
-            scene->addItem(enemy);
-        }
-        else if(instruction == ':')
-        {
-            Enemy_02* enemy = new Enemy_02(this, scene);
-            scene->addItem(enemy);
-        }
-        else if(instruction == '_')
-        {
-            // rest
-        }
-        else if(instruction == 'b')
-        {
-            Enemy_boss01* enemy = new Enemy_boss01(this, scene);
-            scene->addItem(enemy);
-        }
-        else if(instruction == 'r')
-        {
-            play();
-        }
-        else if(instruction == 'e')
-        {
-            //exit(0);
-            showMessage("Level " + QString::number(++level_number), 2000);
+            if(level.length() <= index) break;
+            QChar instruction = level.at(index);
+
+            if(instruction == '1')
+            {
+                Enemy_01* enemy = new Enemy_01(this, scene);
+                enemy->setPos(static_cast<qreal>(index)*(scene->width()*0.05), enemy->y());
+                scene->addItem(enemy);
+            }
+            else if(instruction == '2')
+            {
+                Enemy_02* enemy = new Enemy_02(this, scene);
+                enemy->setPos(index*(scene->width()*0.05), enemy->y());
+                scene->addItem(enemy);
+            }
+            else if(instruction == '_')
+            {
+                // rest
+            }
+            else if(instruction == 'b')
+            {
+                Enemy_boss01* enemy = new Enemy_boss01(this, scene);
+                scene->addItem(enemy);
+            }
+            else if(instruction == 'r')
+            {
+                play();
+            }
+            else if(instruction == 'e')
+            {
+                //exit(0);
+                showMessage("Level " + QString::number(++level_number), 2000);
+            }
         }
     }
 }

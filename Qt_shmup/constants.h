@@ -7,7 +7,7 @@ const float speed_factor = 1.4;
 
 const int player_speed = 5 * speed_factor;
 const unsigned int player_pos_tolerance = 3;
-const int enemy_spawn_timeout = 1200 * speed_factor;
+const int enemy_spawn_timeout = 180 * speed_factor;
 
 const unsigned int speed_e01 = 2 * speed_factor;
 const unsigned int speed_e02 = 1 * speed_factor;

@@ -16,7 +16,7 @@ public:
     static Game& getInstance();
     void init();
     void play();
-    void play(QString new_level);
+    void play(QFile* new_level);
     void showMessage(QString message, int time);
     void addPoints(int points);
     int getPoints();
@@ -40,6 +40,8 @@ private:
     unsigned int bg_pos;
     QTimer* enemy_spawn;
     QString level;
+    QFile* level_file;
+    QTextStream* level_stream;
     QTimer* main_tick;
     QGraphicsView* view;
     unsigned int level_number;
