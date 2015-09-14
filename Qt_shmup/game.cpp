@@ -122,11 +122,28 @@ void Game::init()
 
 void Game::play()
 {
-    play(new QFile(":/levels/level1.txt"));
+    if(level_file == NULL)
+    {
+        play(new QFile(":/levels/level1.txt"));
+    }
+    else if(level_file->fileName() == ":/levels/level1.txt")
+    {
+        play(new QFile(":/levels/level2.txt"));
+    }
+    else if(level_file->fileName() == ":/levels/level2.txt")
+    {
+        qDebug() << "Perform end of game score + credits"; // TODO: design & implement
+    }
+    else
+    {
+        qDebug() << "Error: Unknown level_file state!";
+        exit(2);
+    }
 }
 
 void Game::play(QFile* new_level)
 {
+    qDebug() << new_level->fileName();
     scene->addItem(player);
     player->setPos(scene->width()/2 - player->pixmap().width()/2, scene->height() - player->pixmap().height());
     scene->addItem(health);
