@@ -60,11 +60,11 @@ void Enemy::check()
                 }
                 if(health <= 0)
                 {
+                    Game::getInstance().addPoints(score);
                     if(dynamic_cast<Enemy_b01*>(this))
                     {
                         Game::getInstance().levelFinished();
                     }
-                    Game::getInstance().addPoints(score);
                     delete this;
                 }
             }

@@ -19,7 +19,7 @@
 #include <QImage>
 #include <QTimer>
 
-Game::Game() : background(NULL), level_number(0)
+Game::Game() : background(NULL), level_number(0), last_level(false)
 {
 }
 
@@ -53,26 +53,35 @@ void Game::menuShow()
 
 void Game::levelFinished()
 {
-    //Show shop here!
+    if(!last_level)
+    {
+        //Show shop here!
+        Button_play* bp = new Button_play(this);
+        bp->setPixmap(QPixmap(":/images/menu_play.png"));
+        bp->setPos(600, 500);
+        bp->setZValue(4);
+        scene->addItem(bp);
 
-    Button_play* bp = new Button_play(this);
-    bp->setPixmap(QPixmap(":/images/menu_play.png"));
-    bp->setPos(600, 500);
-    bp->setZValue(4);
-    scene->addItem(bp);
+        Button_w1* b = new Button_w1(bp);
+        b->setZValue(4);
+        b->setPos(400,300);
+        scene->addItem(b);
 
-    Button_w1* b = new Button_w1(bp);
-    b->setZValue(4);
-    b->setPos(400,300);
-    scene->addItem(b);
+        Button_w2* b2 = new Button_w2(bp);
+        b2->setZValue(4);
+        b2->setPos(400,400);
+        scene->addItem(b2);
 
-    Button_w2* b2 = new Button_w2(bp);
-    b2->setZValue(4);
-    b2->setPos(400,400);
-    scene->addItem(b2);
-
-    player->setInShop(true);
-    player->setPos(100,player->y());
+        player->setInShop(true);
+        player->setPos(100,player->y());
+    }
+    else
+    {
+        player->setInShop(true);
+        player->setPos(scene->width()/2-player->pixmap().width()/2, player->y());
+        // player->fly_away...
+        showMessage("Game Complete...\nCredits", 15000);
+    }
 }
 
 Game::~Game()
@@ -128,11 +137,8 @@ void Game::play()
     }
     else if(level_file->fileName() == ":/levels/level1.txt")
     {
+        last_level = true;
         play(new QFile(":/levels/level2.txt"));
-    }
-    else if(level_file->fileName() == ":/levels/level2.txt")
-    {
-        qDebug() << "Perform end of game score + credits"; // TODO: design & implement
     }
     else
     {

@@ -45,6 +45,7 @@ private:
     QTimer* main_tick;
     QGraphicsView* view;
     unsigned int level_number;
+    bool last_level;
 
 public slots:
     void move_bg();
