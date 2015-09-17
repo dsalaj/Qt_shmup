@@ -8,7 +8,7 @@ Button_play::Button_play(QObject *parent) : QObject(parent)
 
 Button_play::~Button_play()
 {
-    Game::getInstance().getPlayer()->setInShop(false);
+    Game::getInstance().getPlayer()->setInShop(false, false);
 }
 
 void Button_play::mouseReleaseEvent(QGraphicsSceneMouseEvent *e)

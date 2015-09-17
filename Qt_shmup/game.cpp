@@ -72,12 +72,12 @@ void Game::levelFinished()
         b2->setPos(400,400);
         scene->addItem(b2);
 
-        player->setInShop(true);
+        player->setInShop(true, true);
         player->setPos(100,player->y());
     }
     else
     {
-        player->setInShop(true);
+        player->setInShop(true, false);
         player->setPos(scene->width()/2-player->pixmap().width()/2, player->y());
         // player->fly_away...
         showMessage("Game Complete...\nCredits", 15000);

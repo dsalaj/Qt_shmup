@@ -12,7 +12,7 @@ class Player : public QObject, public QGraphicsPixmapItem
 public:
     explicit Player(QObject *parent = 0);
     bool eventFilter(QObject *obj, QEvent *event);
-    void setInShop(bool value);
+    void setInShop(bool value, bool shoot);
     int bullet_type;
 private:
     QMediaPlayer* bulletSound;

@@ -62,10 +62,10 @@ bool Player::eventFilter(QObject *obj, QEvent *event)
     return false;
 }
 
-void Player::setInShop(bool value)
+void Player::setInShop(bool value, bool shoot)
 {
     in_shop = value;
-    if(in_shop == true)
+    if(in_shop && shoot)
     {
         shooter->start(300);
     }
