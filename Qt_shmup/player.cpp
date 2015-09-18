@@ -22,7 +22,9 @@ Player::Player(QObject *parent) :
     mouse_x(0),
     mouse_y(0),
     shoot(false),
-    in_shop(false)
+    in_shop(false),
+    fly_away(false),
+    fly_away_speed(0.1)
 {
     setPixmap(QPixmap(":/images/spaceship.png"));
     setZValue(1);
@@ -69,6 +71,11 @@ void Player::setInShop(bool value, bool shoot)
     {
         shooter->start(300);
     }
+    else if(in_shop && !shoot)
+    {
+        shooter->stop();
+        fly_away = true;
+    }
     else
     {
         shooter->stop();
@@ -103,6 +110,11 @@ void Player::advance(int phase)
         }
         bullet->setPos(x()+pixmap().width()/2-bullet->pixmap().width()/2, y());
         scene()->addItem(bullet);
+    }
+    if(fly_away)
+    {
+        setPos(x(),y()-fly_away_speed);
+        fly_away_speed += fly_away_speed / 5*(fly_away_speed-0.9*fly_away_speed);
     }
 }
 

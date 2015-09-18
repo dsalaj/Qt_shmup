@@ -24,6 +24,8 @@ private:
     bool shoot;
     bool in_shop;
     QTimer* shooter;
+    bool fly_away;
+    float fly_away_speed;
 public slots:
     void shoot_shop();
 };
