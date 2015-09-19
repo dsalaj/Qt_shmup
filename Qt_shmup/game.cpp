@@ -53,7 +53,6 @@ void Game::menuShow()
 
 void Game::levelFinished()
 {
-    showMessage("Game Complete...\nCredits", 15000);
     if(!last_level)
     {
         //Show shop here!
@@ -80,8 +79,7 @@ void Game::levelFinished()
     {
         player->setInShop(true, false);
         player->setPos(scene->width()/2-player->pixmap().width()/2, player->y());
-        // player->fly_away...
-        showMessage("Game Complete...\nCredits", 15000);
+        showMessage(QString("Game Complete...\nYour score: %1\nCredits").arg(score->getScore()), 15000);
     }
 }
 

@@ -7,6 +7,7 @@ LevelMessage::LevelMessage(QString message, int time)
 {
     setPlainText(message);
     setDefaultTextColor(QColor(255,255,255));
+    //setTextWidth(600);
     setScale(2);
 
     show();
