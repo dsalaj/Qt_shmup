@@ -53,6 +53,7 @@ void Game::menuShow()
 
 void Game::levelFinished()
 {
+    showMessage("Game Complete...\nCredits", 15000);
     if(!last_level)
     {
         //Show shop here!
@@ -171,7 +172,7 @@ void Game::play(QFile* new_level)
 void Game::showMessage(QString message, int time)
 {
     LevelMessage* m = new LevelMessage(message, time);
-    m->setPos(scene->width()/2 - (m->boundingRect().width()/2)*5, scene->height()/2-m->boundingRect().height()*5);
+    m->setPos(scene->width()/2 - (m->boundingRect().width()/2)*m->scale(), scene->height()/2-m->boundingRect().height()*m->scale());
     scene->addItem(m);
 }
 

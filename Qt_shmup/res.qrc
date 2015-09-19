@@ -23,4 +23,7 @@
         <file>level1.txt</file>
         <file>level2.txt</file>
     </qresource>
+    <qresource prefix="/font">
+        <file>vermin_vibes_1989.ttf</file>
+    </qresource>
 </RCC>

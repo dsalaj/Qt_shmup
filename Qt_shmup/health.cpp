@@ -6,7 +6,8 @@ Health::Health(unsigned int h) : health(h)
 {
     setPlainText("Health: " + QString::number(health));
     setDefaultTextColor(QColor(255,255,255));
-    setPos(x(), 15);
+    setPos(x()+4, 25);
+    setZValue(4);
     show();
 }
 

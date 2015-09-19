@@ -1,12 +1,13 @@
 #include "levelmessage.h"
 
 #include <QTimer>
+#include <QGraphicsScene>
 
 LevelMessage::LevelMessage(QString message, int time)
 {
     setPlainText(message);
-    setDefaultTextColor(QColor(200,200,255));
-    setScale(5);
+    setDefaultTextColor(QColor(255,255,255));
+    setScale(2);
 
     show();
 
